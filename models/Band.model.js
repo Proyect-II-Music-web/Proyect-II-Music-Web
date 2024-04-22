@@ -30,6 +30,7 @@ bandSchema.pre("save", function (next) {
         bcrypt.hash(this.password, SALT_ROUNDS)
             .then(hash=> {
                 this.password = hash;
+                next();
             })
     } else{
         next();
