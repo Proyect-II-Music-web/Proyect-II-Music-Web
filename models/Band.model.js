@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const { REQUIRED_FIELD_ERROR } = require("../constants/errorMessages");

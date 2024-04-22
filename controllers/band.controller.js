@@ -10,17 +10,18 @@ module.exports.doRegister = (req, res, next) => {
     }
     console.log(req.body)
     Band.create(req.body)
-
+    console.log(req.body)
         .then((band) => {
           console.log(band);
           res.redirect("/login")  
         })
         .catch((err) => {
-          if (err instanceof mongoose.Error.ValidationError) {
-            renderWithErrors(err.errors, req.body);
-          } else {
-            next();
-          } 
+          console.log(err);
+          //if (err instanceof mongoose.Error.ValidationError) {
+          //  renderWithErrors(err.errors, req.body);
+          //} else {
+          //  next();
+          //} 
         })
         
 }
