@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const { REQUIRED_FIELD_ERROR } = require("../constants/errorMessages");
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const SALT_ROUNDS = 10;
+console.log("commit")
 
 const userSchema = mongoose.Schema(
   {
