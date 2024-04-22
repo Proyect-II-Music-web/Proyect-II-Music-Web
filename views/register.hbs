@@ -2,52 +2,60 @@
   <div class="container">
     <div class="row">
       <div class="container w-50 m-auto">
-        
-          
-            <h1 class="mb-1 text-center">Regístrate</h1>
-            
+        <h1 class="mb-1 text-center">Regístrate</h1>
+          <form action="/register" method="POST">
+            <label for="name">Name
+              <span class="required">*</span></label>
+            <input
+              value="{{values.name}}"
+              type="text"
+              class="form-control {{#if errors.name}}is-invalid{{/if}}"
+              name="name"
+              id="name"
+            />
+            {{#if errors.name}}
+              <div class="invalid-feedback">
+                {{errors.name}}
+              </div>
+            {{/if}}
+            <label for="email">Email
+              <span class="required">*</span></label>
+            <input
+            value="{{values.email}}"
+              type="email"
+              class="form-control {{#if errors.email}}is-invalid{{/if}}"
+              name="email"
+              id="email"
+            />
+            {{#if errors.email}}
+              <div class="invalid-feedback">
+                {{errors.email}}
+              </div>
+            {{/if}}
+            <label for="password">Password
+              <span class="required">*</span></label>
+            <input
+              type="password"
+              class="form-control {{#if errors.password}}is-invalid{{/if}}"
+              name="password"
+              id="password"
+            />
+            {{#if errors.password}}
+              <div class="invalid-feedback">
+                {{errors.password}}
+              </div>
+            {{/if}} 
+            <button class="btn btn-primary w-100 py-2 mb-4 mt-3">
+              Regístrate
+            </button>
+          </form>
 
-            <form action="/register" method="POST">
-                <label for="name">Name
-                  <span class="required">*</span></label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="name"
-                  id="name"
-                />
-                <div class="invalid-feedback">This field is required</div></p>
-
-                <label for="email">Email
-                  <span class="required">*</span></label>
-                <input
-                  type="email"
-                  class="form-control"
-                  name="email"
-                  id="email"
-                />
-                <label for="password">Password
-                  <span class="required">*</span></label>
-                <input
-                  type="password"
-                  class="form-control"
-                  name="password"
-                  id="password"
-                />  
-                <button class="btn btn-primary w-100 py-2 mb-4 mt-3">
-                  Regístrate
-                </button>
-            </form>
-
-            <p class="text-center small mb-2">By clicking "Sign
-              up" you agree to our
-              <a href="https://themes.getbootstrap.com/terms">Terms of Service</a>.</p>
-            <p class="text-center small mb-2">Already have an
-              account?
-              <a href="https://themes.getbootstrap.com/signin/">Inicia sesión</a></p>
-
-          
-       
+        <p class="text-center small mb-2">By clicking "Sign
+          up" you agree to our
+          <a href="https://themes.getbootstrap.com/terms">Terms of Service</a>.</p>
+        <p class="text-center small mb-2">Already have an
+          account?
+          <a href="https://themes.getbootstrap.com/signin/">Inicia sesión</a></p>
       </div>
     </div>
   </div>
