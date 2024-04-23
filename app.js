@@ -6,6 +6,7 @@ const hbs = require('hbs');
 const path = require('path');
 
 //Exportamos el archivo de rutas
+const session = require("./config/sessionBand.config");
 const routes = require("./config/routes.config");
 
 //conectamos a base de datos
@@ -24,6 +25,8 @@ app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "views"));
 hbs.registerPartials(path.join(__dirname, "views/partials"));
 
+app.use(session.sessionConfig);
+app.use(session.getCurrentBand);
 app.use(routes);
 
 app.listen(3000, () => {

@@ -47,8 +47,9 @@ module.exports. doBandLogin = (req, res, next) => {
         return band.checkPassword(password)
           .then((match) => {
             if (match) {
+              console.log("controller",req.session);
               //Aquí se pasa el id del usuario a la session
-              //req.session.bandId = band.id;
+              req.session.bandId = band.id;
               //Si todo va bien nos redirige a la ruta del perfil
               res.redirect("/band/profile")
             } else {
