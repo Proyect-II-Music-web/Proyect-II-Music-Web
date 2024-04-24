@@ -3,7 +3,7 @@
     <div class="row">
       <div class="container w-50 m-auto">
         <h1 class="mb-1 text-center">Regístrate</h1>
-          <form action="band/register" method="POST">
+          <form action="/user/register" method="POST">
             <label for="name">Name
               <span class="required">*</span></label>
             <input
@@ -44,7 +44,17 @@
               <div class="invalid-feedback">
                 {{errors.password}}
               </div>
-            {{/if}} 
+            {{/if}}
+            <label for="plot">Choose the Cast</label>
+            <select
+              name="role"
+              class="form-select"
+              id="role"
+              aria-label="Floating label select example"
+            >
+              <option value="user">User</option>
+              <option value="promoter">Promoter</option>
+            </select>
             <button class="btn btn-primary w-100 py-2 mb-4 mt-3">
               Regístrate
             </button>

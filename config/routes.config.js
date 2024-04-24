@@ -1,21 +1,32 @@
 const router= require("express").Router();
 const { 
-    bandRegister,
-    doBandRegister,
-    bandLogin,
-    doBandLogin,
+    userRegister,
+    doUserRegister,
+    userLogin,
+    doUserLogin,
+    userProfile
+} = require("../controllers/user.controller");
+const { 
     bandProfile
 } = require("../controllers/band.controller");
 
+const {
+    promoterProfile,
+} = require("../controllers/promoter.controller");
+
 router.get("/", (req, res, next) => res.render("home"));
 
-//Band
-router.get("/band/register", bandRegister);
-router.post("/band/register", doBandRegister);
-router.get("/band/login", bandLogin);
-router.post("/band/login", doBandLogin);
-router.get("/band/profile", bandProfile);
+//User
+router.get("/user/register", userRegister);
+router.post("/user/register", doUserRegister);
+router.get("/user/login", userLogin);
+router.post("/user/login", doUserLogin);
+router.get("/user/profile", userProfile);
 
+//Band
+router.get("/band/profile", bandProfile);
+//Promoter
+router.get("/promoter/profile", promoterProfile);
 
 module.exports = router;
 
