@@ -4,11 +4,10 @@ const bcrypt = require("bcrypt");
 const { REQUIRED_FIELD_ERROR } = require("../constants/errorMessages");
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const SALT_ROUNDS = 10;
-console.log("commit")
 
 const userSchema = mongoose.Schema(
   {
-    nickname: {
+    name: {
       type: String,
       required: [true, REQUIRED_FIELD_ERROR],
       trim: true,
@@ -25,6 +24,13 @@ const userSchema = mongoose.Schema(
       required: [true, REQUIRED_FIELD_ERROR],
       minLength: [8, "Password must be at least 8 characters long"],
     },
+    role: {
+      type: String,
+      required: [true, REQUIRED_FIELD_ERROR],
+      enum: ["user", "promoter"],
+      default: "user",
+    },
+    
   }
 )
 userSchema.pre('save', function(next) {
@@ -32,10 +38,10 @@ userSchema.pre('save', function(next) {
       bcrypt.hash(this.password, SALT_ROUNDS)
         .then(hash => {
           this.password = hash;
-          next()
+          next();
         })
     } else {
-      next()
+      next();
     }
   })
   

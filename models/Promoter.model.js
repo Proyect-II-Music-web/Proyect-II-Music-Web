@@ -25,7 +25,7 @@ const promoterSchema = mongoose.Schema({
 });
 
 //Hasheamos la contraseña antes de guardarla
-bandSchema.pre("save", function (next) {
+promoterSchema.pre("save", function (next) {
     if (this.isModified("password")) {
         bcrypt.hash(this.password, SALT_ROUNDS)
             .then(hash=> {
@@ -37,7 +37,7 @@ bandSchema.pre("save", function (next) {
     }
 })
 
-bandSchema.methods.checkPassword = function (passwordToCompare) {
+promoterSchema.methods.checkPassword = function (passwordToCompare) {
    return bcrypt.compare(passwordToCompare, this.password) 
 }
 const Promoter = mongoose.model("Promoter", promoterSchema);

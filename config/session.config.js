@@ -2,7 +2,7 @@ const expressSession = require("express-session");
 const MongoStore = require("connect-mongo");
 //exportamos la url de mongo de nuestro db-config
 const DB = require("./db.config");
-const Band = require("../models/Band.model");
+const User = require("../models/User.model");
 
 //Constate de vida tiempo en días
 const MAX_AGE = 7;
@@ -25,13 +25,13 @@ module.exports.sessionConfig = expressSession({
 })
 
 //Obtenemos el current user para poder usar sus datos en todas las vistas
-module.exports.getCurrentBand = (req, res, next) => {
-    if (req.session.bandId) {
-        Band.findById(req.session.bandId)
+module.exports.getCurrentUser = (req, res, next) => {
+    if (req.session.userId) {
+        User.findById(req.session.userId)
         //Aqui pupularemos el post del evento para tenerlo en la session
-            .then((band) => {
-                req.currentUser = band;
-                res.locals.currentUser = band;
+            .then((user) => {
+                req.currentUser = user;
+                res.locals.currentUser = user;
                 next();
             })
             .catch((err) => next(err))
