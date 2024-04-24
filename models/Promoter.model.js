@@ -40,5 +40,5 @@ bandSchema.pre("save", function (next) {
 bandSchema.methods.checkPassword = function (passwordToCompare) {
    return bcrypt.compare(passwordToCompare, this.password) 
 }
-const Promoter = mongoose.model("Band", promoterSchema);
+const Promoter = mongoose.model("Promoter", promoterSchema);
 module.exports = Promoter;
