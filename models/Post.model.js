@@ -24,7 +24,7 @@ const postSchema = mongoose.Schema({
         required: [true, REQUIRED_FIELD_ERROR]
     }
 
-})
+});
 
 const Post = mongoose.model("Post", postSchema);
 module.exports = Post;

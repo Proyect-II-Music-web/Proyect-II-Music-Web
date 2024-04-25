@@ -1,0 +1,58 @@
+ <div class="container mt-5">
+    <div class="col-md-8 m-auto"> <!-- Aquí se define el ancho del formulario -->
+        <h1>Create a New Post</h1>
+        <form action="/promoter/post" method="POST">
+            <div class="form-group mb-3">
+                <label for="title">Title:</label>
+                <input value="{{values.title}}" type="text" class="form-control {{#if errors.title}}is-invalid{{/if}}" id="title" name="title">
+                {{#if errors.title}}
+                <div class="invalid-feedback">
+                    {{errors.title}}
+                </div>
+                {{/if}}
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="description">Description:</label>
+                <textarea class="form-control {{#if errors.description}}is-invalid{{/if}}" id="description" name="description" rows="3">{{values.description}}</textarea>
+                {{#if errors.description}}
+                <div class="invalid-feedback">
+                    {{errors.description}}
+                </div>
+                {{/if}}
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="tags">Tags (comma-separated):</label>
+                <input value="{{values.tags}}" type="text" class="form-control {{#if errors.tags}}is-invalid{{/if}}" id="tags" name="tags">
+                {{#if errors.tags}}
+                <div class="invalid-feedback">
+                    {{errors.tags}}
+                </div>
+                {{/if}}
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="date">Date:</label>
+                <input value="{{values.date}}"type="date" class="form-control {{#if errors.date}}is-invalid{{/if}}" id="date" name="date">
+                {{#if errors.date}}
+                <div class="invalid-feedback">
+                    {{errors.date}}
+                </div>
+                {{/if}}
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="place">Place:</label>
+                <input value="{{values.place}}" type="text" class="form-control {{#if errors.place}}is-invalid{{/if}}" id="place" name="place">
+                {{#if errors.place}}
+                <div class="invalid-feedback">
+                    {{errors.place}}
+                </div>
+                {{/if}}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+</div>

@@ -12,6 +12,10 @@ const {
 
 const {
     promoterProfile,
+    createPost,
+    doCreatePost,
+    getPosts,
+    postDetail,
 } = require("../controllers/promoter.controller");
 
 router.get("/", (req, res, next) => res.render("home"));
@@ -27,6 +31,9 @@ router.get("/user/profile", userProfile);
 router.get("/band/profile", bandProfile);
 //Promoter
 router.get("/promoter/profile", promoterProfile);
-
+router.get("/promoter/post", createPost);
+router.post("/promoter/post", doCreatePost)
+router.get("/promoter/list-posts", getPosts);
+router.get("/promoter/post/:postId", postDetail);
 module.exports = router;
 
