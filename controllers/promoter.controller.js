@@ -11,10 +11,8 @@ module.exports.doCreatePost = (req, res, next) => {
     const renderWithErrors = (errors, values) => {
         res.render("promoter/post", { errors, values });
       };
-      console.log("antes", req.body)
       Post.create(req.body)
         .then((post) => {
-          console.log("promesa", post);
           res.redirect("/promoter/list-posts");
         })
         .catch((err) => {

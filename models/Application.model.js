@@ -1,0 +1,19 @@
+const mongoose = require("mongoose");
+const User = require("./User.model");
+const Post = require("./Post.model");
+
+const applicationSchema = mongoose.Schema({
+    user: {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: User.modelName,
+        required: true
+    },
+    post: {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: Post.modelName,
+        required: true
+    }
+})
+
+const Application = mongoose.model("Application", applicationSchema);
+module.exports = Application;
