@@ -7,7 +7,9 @@ const {
     userProfile
 } = require("../controllers/user.controller");
 const { 
-    bandProfile
+    bandProfile,
+    createBand,
+    doCreateBand,
 } = require("../controllers/band.controller");
 
 const {
@@ -29,6 +31,8 @@ router.get("/user/profile", userProfile);
 
 //Band
 router.get("/band/profile", bandProfile);
+router.get("/band/create-band", createBand)
+router.post("/band/create-band", doCreateBand)
 //Promoter
 router.get("/promoter/profile", promoterProfile);
 router.get("/promoter/post-event", createPost);
