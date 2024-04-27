@@ -19,6 +19,9 @@ const {
     getPosts,
     postDetail,
 } = require("../controllers/promoter.controller");
+const {
+    doApplicate
+} = require("../controllers/application.controller");
 
 router.get("/", (req, res, next) => res.render("home"));
 
@@ -39,5 +42,8 @@ router.get("/promoter/post-event", createPost);
 router.post("/promoter/post-event", doCreatePost)
 router.get("/promoter/list-posts", getPosts);
 router.get("/promoter/post/:postId", postDetail);
+
+//Solicitud
+router.post("/promoter/post/:postId/application", doApplicate);
 module.exports = router;
 

@@ -5,7 +5,7 @@ const Post = require("./Post.model");
 const applicationSchema = mongoose.Schema({
     user: {
         type: mongoose.SchemaTypes.ObjectId,
-        ref: User.modelName,
+        ref: "User",
         required: true
     },
     post: {

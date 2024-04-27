@@ -8,8 +8,9 @@
           <p class="card-text">Tags: {{post.tags}}</p>
           <p class="card-text">Fecha: {{post.date}}</p>
           <p class="card-text">Lugar: {{post.place}}</p>
-          <a href="/" class="btn btn-primary">Volver</a>
-        </div>
+          <form action="/promoter/post/{{post._id}}/application" method="POST">
+            <button class="btn {{#if applicated}}btn-danger{{else}}btn-outline-danger{{/if}}">Solicitar</button>
+          </form>
       </div>
     </div>
   </div>

@@ -5,6 +5,7 @@ const { REQUIRED_FIELD_ERROR } = require("../constants/errorMessages");
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const SALT_ROUNDS = 10;
 
+const Application = require("./Application.model");
 const userSchema = mongoose.Schema(
   {
     name: {
@@ -31,8 +32,20 @@ const userSchema = mongoose.Schema(
       default: "user",
     },
     
+  },
+  {
+    toObject: {
+      virtuals: true
+    }
   }
 )
+userSchema.virtual("applications", {
+  ref: Application.modelName,
+  foreignField: "user",
+  localField: "_id",
+  justOne: false
+})
+
 userSchema.pre('save', function(next) {
     if (this.isModified('password')) {
       bcrypt.hash(this.password, SALT_ROUNDS)

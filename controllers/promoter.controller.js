@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
 const Post = require("../models/Post.model");
+const Application = require("../models/Application.model");
+const { populate } = require("dotenv");
+
 
 module.exports.promoterProfile = (req, res, next) => {
     res.render("promoter/profile");
@@ -28,7 +31,6 @@ module.exports.getPosts = (req, res, next) => {
   Post.find()
 
     .then((posts) => {
-      console.log(posts);
       res.render("promoter/list", { posts });
     })
     .catch((err) => next(err));
@@ -36,9 +38,22 @@ module.exports.getPosts = (req, res, next) => {
 module.exports.postDetail = (req, res, next) => {
   const {postId} = req.params;
   Post.findById(postId)
+    .populate({path: "applications", populate:{path: "user"}})
     .then((post) => {
-      console.log("post", post);
-      res.render("promoter/post-detail", { post })
+      if (!post) {
+        next(createError(404, "No tienes solicitudes a eventos"))
+      }
+      if (req.currentUser) {
+        return Application.findOne({user: req.currentUser._id, post: postId})
+          .then((application) => {
+            if (application) {
+              res.render("promoter/post-detail", { post, applicated: Boolean(application) })
+            } else {
+              res.render("promoter/post-detail", {post})
+            }
+          })
+      }
+      
     })
     .catch((err) => next())
 };
