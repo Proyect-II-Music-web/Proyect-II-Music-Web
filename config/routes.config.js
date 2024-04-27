@@ -4,7 +4,8 @@ const {
     doUserRegister,
     userLogin,
     doUserLogin,
-    userProfile
+    userProfile,
+    logout
 } = require("../controllers/user.controller");
 const { 
     bandProfile,
@@ -23,25 +24,37 @@ const {
     doApplicate
 } = require("../controllers/application.controller");
 
+const {
+    isAuthenticated,
+    isNoAuthenticated
+} = require("../middlewares/auth.middleware")
+
+const {
+    isPromoter,
+    userHasBand
+} = require("../middlewares/roles.middleware")
+
+
 router.get("/", (req, res, next) => res.render("home"));
 
 //User
-router.get("/user/register", userRegister);
-router.post("/user/register", doUserRegister);
-router.get("/user/login", userLogin);
-router.post("/user/login", doUserLogin);
-router.get("/user/profile", userProfile);
+router.get("/user/register", isNoAuthenticated, userRegister);
+router.post("/user/register", isNoAuthenticated, doUserRegister);
+router.get("/user/login", isNoAuthenticated, userLogin);
+router.post("/user/login", isNoAuthenticated, doUserLogin);
+router.get("/user/profile", isAuthenticated, userProfile);
+router.get("/user/logout", isAuthenticated, logout)
 
 //Band
-router.get("/band/profile", bandProfile);
-router.get("/band/create-band", createBand)
-router.post("/band/create-band", doCreateBand)
+
+router.get("/band/create-band", isAuthenticated, createBand)
+router.post("/band/create-band", isAuthenticated, doCreateBand)
 //Promoter
-router.get("/promoter/profile", promoterProfile);
-router.get("/promoter/post-event", createPost);
-router.post("/promoter/post-event", doCreatePost)
-router.get("/promoter/list-posts", getPosts);
-router.get("/promoter/post/:postId", postDetail);
+router.get("/promoter/profile",isAuthenticated, isPromoter,  promoterProfile);
+router.get("/promoter/post-event", isAuthenticated, isPromoter, createPost);
+router.post("/promoter/post-event", isAuthenticated, isPromoter, doCreatePost)
+router.get("/promoter/list-posts",isAuthenticated, getPosts);
+router.get("/promoter/post/:postId", isAuthenticated, postDetail);
 
 //Solicitud
 router.post("/promoter/post/:postId/application", doApplicate);

@@ -11,6 +11,7 @@ module.exports.createPost = (req, res, next) => {
     res.render("promoter/post");
 };
 module.exports.doCreatePost = (req, res, next) => {
+    req.body.owner = req.currentUser.id;
     const renderWithErrors = (errors, values) => {
         res.render("promoter/post", { errors, values });
       };
@@ -28,8 +29,10 @@ module.exports.doCreatePost = (req, res, next) => {
         });
 };
 module.exports.getPosts = (req, res, next) => {
-  Post.find()
-
+  const userIsPromoter = req.currentUser.role === 'promoter';
+  const userHasBands = req.currentUser?.bands?.length > 0;
+  Post.find(userIsPromoter ? {owner: req.currentUser.id} : {isClosed: !userHasBands})
+    //.populate("posts")
     .then((posts) => {
       res.render("promoter/list", { posts });
     })
@@ -46,11 +49,7 @@ module.exports.postDetail = (req, res, next) => {
       if (req.currentUser) {
         return Application.findOne({user: req.currentUser._id, post: postId})
           .then((application) => {
-            if (application) {
-              res.render("promoter/post-detail", { post, applicated: Boolean(application) })
-            } else {
-              res.render("promoter/post-detail", {post})
-            }
+            res.render("promoter/post-detail", { post, applicated: Boolean(application) })
           })
       }
       

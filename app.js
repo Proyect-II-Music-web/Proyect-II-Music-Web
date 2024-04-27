@@ -6,7 +6,7 @@ const hbs = require('hbs');
 const path = require('path');
 
 //Exportamos el archivo de rutas
-
+require("./helpers/helper")
 const session = require("./config/session.config");
 const routes = require("./config/routes.config");
 

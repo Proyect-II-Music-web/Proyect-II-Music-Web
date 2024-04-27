@@ -13,6 +13,7 @@ const applicationSchema = mongoose.Schema({
         ref: Post.modelName,
         required: true
     }
+
 })
 
 const Application = mongoose.model("Application", applicationSchema);

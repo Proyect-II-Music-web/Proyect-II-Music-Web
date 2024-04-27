@@ -1,7 +1,7 @@
  <div class="container mt-5">
     <div class="col-md-8 m-auto"> <!-- Aquí se define el ancho del formulario -->
         <h1>Crea un Nuevo Evento</h1>
-        <form action="/promoter/post" method="POST">
+        <form action="/promoter/post-event" method="POST">
             <div class="form-group mb-3">
                 <label for="title">Title:</label>
                 <input value="{{values.title}}" type="text" class="form-control {{#if errors.title}}is-invalid{{/if}}" id="title" name="title">

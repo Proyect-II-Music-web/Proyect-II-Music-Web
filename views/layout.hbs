@@ -20,29 +20,38 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="/">Home</a>
                     </li>
+                    {{#ifRoleIsUser currentUser}}
                     <li class="nav-item">
                         <a class="nav-link" href="/band/create-band">Crea tu Banda</a>
                     </li>
+                    {{/ifRoleIsUser}}
+                    {{#ifRoleIsPromoter currentUser}}
                     <li class="nav-item">
                         <a class="nav-link" href="/promoter/post-event">Crea tu Evento</a>
                     </li>
+                    {{/ifRoleIsPromoter}}
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="/promoter/list-posts">Lista de Eventos</a>
                     </li>
                     </ul>
                 <ul class="navbar-nav">
+                    {{#if currentUser}}
+
+                     <li class="nav-item">
+                        <a class="nav-link" href="/user/profile">Perfil de Usuario</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/logout">Cerrar sesión</a>
+                    </li>
+                    {{else}}
                     <li class="nav-item">
                         <a class="nav-link" href="/user/register">Regístrate</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/user/login">Iniciar sesión</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/user/profile">Perfil de Usuario</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">Cerrar sesión</a>
-                    </li>
+                   {{/if}}
                 </ul>
             </div>
         </nav>

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { REQUIRED_FIELD_ERROR } = require("../constants/errorMessages");
+const User = require("../models/User.model");
 const bandSchema = mongoose.Schema({
     name: {
         type: String,
@@ -20,6 +21,11 @@ const bandSchema = mongoose.Schema({
     members: {
         type: [String],
         required: [true, REQUIRED_FIELD_ERROR]
+    },
+    owner:{
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: "User",
+        required: true
     }
 
 });

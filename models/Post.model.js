@@ -24,18 +24,29 @@ const postSchema = mongoose.Schema(
         place: {
             type: String,
             required: [true, REQUIRED_FIELD_ERROR]
+        },
+        isClosed: {
+            type: Boolean,
+            default: false
+        },
+        owner: {
+            type: mongoose.SchemaTypes.ObjectId,
+            ref: "User",
+            required: true
         }
-
     },
     {
         toObject: {
+            virtuals: true
+        },
+        toJSON: {
             virtuals: true
         }
     }
 )
 
 postSchema.virtual("applications", {
-    ref: Application.modelName,
+    ref: "Application",
     foreignField: "post",
     localField: "_id",
     justOne: false

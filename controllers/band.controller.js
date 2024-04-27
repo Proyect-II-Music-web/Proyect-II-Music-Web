@@ -10,9 +10,10 @@ module.exports.createBand = (req, res, next) => {
 };
 
 module.exports.doCreateBand = (req, res, next) =>  {
+  req.body.owner = req.currentUser.id;
   Band.create(req.body)
   .then(() => {
-    res.redirect("/band/profile")
+    res.redirect("/user/profile")
   })
-  .catch((err) => next())
+  .catch((err) => next(err))
 }

@@ -1,1 +1,7 @@
 {{currentUser.name}}
+{{#ifRoleIsUser currentUser}}
+
+{{#each currentUser.bands as |band|}}
+    {{band.name}}
+{{/each}}
+{{/ifRoleIsUser}}

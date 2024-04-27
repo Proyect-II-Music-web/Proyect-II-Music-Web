@@ -6,6 +6,8 @@ const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const SALT_ROUNDS = 10;
 
 const Application = require("./Application.model");
+const Band = require("./Band.model");
+const Post = require("../models/Post.model")
 const userSchema = mongoose.Schema(
   {
     name: {
@@ -39,12 +41,27 @@ const userSchema = mongoose.Schema(
     }
   }
 )
+
 userSchema.virtual("applications", {
   ref: Application.modelName,
   foreignField: "user",
   localField: "_id",
   justOne: false
 })
+
+userSchema.virtual("bands", {
+  ref: Band.modelName,
+  foreignField: "owner",
+  localField: "_id",
+  justOne: false
+})
+userSchema.virtual("posts", {
+  ref: Post.modelName,
+  foreignField: "owner",
+  localField: "_id",
+  justOne: false
+})
+
 
 userSchema.pre('save', function(next) {
     if (this.isModified('password')) {
