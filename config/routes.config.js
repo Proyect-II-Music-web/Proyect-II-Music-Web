@@ -8,9 +8,9 @@ const {
     logout
 } = require("../controllers/user.controller");
 const { 
-    bandProfile,
     createBand,
     doCreateBand,
+    bandDetails
 } = require("../controllers/band.controller");
 
 const {
@@ -19,6 +19,7 @@ const {
     doCreatePost,
     getPosts,
     postDetail,
+    addBand,
 } = require("../controllers/promoter.controller");
 const {
     doApplicate
@@ -49,12 +50,14 @@ router.get("/user/logout", isAuthenticated, logout)
 
 router.get("/band/create-band", isAuthenticated, createBand)
 router.post("/band/create-band", isAuthenticated, doCreateBand)
+router.get("/band/:ownerId/details", isAuthenticated, bandDetails)
 //Promoter
 router.get("/promoter/profile",isAuthenticated, isPromoter,  promoterProfile);
 router.get("/promoter/post-event", isAuthenticated, isPromoter, createPost);
 router.post("/promoter/post-event", isAuthenticated, isPromoter, doCreatePost)
 router.get("/promoter/list-posts",isAuthenticated, getPosts);
 router.get("/promoter/post/:postId", isAuthenticated, postDetail);
+router.post("/promoter/post/:postId/add-band",isAuthenticated, isPromoter, addBand)
 
 //Solicitud
 router.post("/promoter/post/:postId/application", doApplicate);

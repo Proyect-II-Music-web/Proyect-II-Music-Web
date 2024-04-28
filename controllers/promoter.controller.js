@@ -41,10 +41,13 @@ module.exports.getPosts = (req, res, next) => {
 module.exports.postDetail = (req, res, next) => {
   const {postId} = req.params;
   Post.findById(postId)
+    //.populate({path: "bands", populate: {path:"band"}})
     .populate({path: "applications", populate:{path: "user"}})
+    
     .then((post) => {
+      console.log("postWithBanns", post);
       if (!post) {
-        next(createError(404, "No tienes solicitudes a eventos"))
+        next(createError(404, "No tienes eventos"))
       }
       if (req.currentUser) {
         return Application.findOne({user: req.currentUser._id, post: postId})
@@ -56,3 +59,13 @@ module.exports.postDetail = (req, res, next) => {
     })
     .catch((err) => next())
 };
+module.exports.addBand = (req, res, next) => {
+  const {postId} = req.params;
+  Post.findById(postId)
+    .populate("band")
+    .then((post) => {
+      console.log(post);
+      res.render("promoter/posts-with-band")
+    })
+    .catch((err) => next(err))
+}

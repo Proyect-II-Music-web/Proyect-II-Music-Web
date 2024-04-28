@@ -12,4 +12,5 @@ module.exports.doApplicate = (req, res, next) => {
                     .then(res.redirect(`/promoter/post/${req.params.postId}`))
             }
         })
+        .catch((err) => next(err))
 }

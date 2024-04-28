@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const REQUIRED_FIELD_ERROR = require("../constants/errorMessages");
 const Application = require("./Application.model");
+const Band = require("./Band.model");
 const postSchema = mongoose.Schema(
     {
         title: {
@@ -33,7 +34,13 @@ const postSchema = mongoose.Schema(
             type: mongoose.SchemaTypes.ObjectId,
             ref: "User",
             required: true
+        },
+        band: {
+            type: mongoose.SchemaTypes.ObjectId,
+            ref: "Band",
+            required: true 
         }
+
     },
     {
         toObject: {
@@ -51,6 +58,7 @@ postSchema.virtual("applications", {
     localField: "_id",
     justOne: false
 })
+
 
 const Post = mongoose.model("Post", postSchema);
 module.exports = Post;
