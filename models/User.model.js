@@ -43,20 +43,20 @@ const userSchema = mongoose.Schema(
 )
 
 userSchema.virtual("applications", {
-  ref: Application.modelName,
+  ref: "Application",
   foreignField: "user",
   localField: "_id",
   justOne: false
 })
 
 userSchema.virtual("bands", {
-  ref: Band.modelName,
+  ref: "Band",
   foreignField: "owner",
   localField: "_id",
   justOne: false
 })
 userSchema.virtual("posts", {
-  ref: Post.modelName,
+  ref: "Post",
   foreignField: "owner",
   localField: "_id",
   justOne: false

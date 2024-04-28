@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-8 offset-md-2">
-      <div class="card">
+      <div class="card mb-3">
         <div class="card-body">
           <h2 class="card-title">{{post.title}}</h2>
           <p class="card-text">{{post.description}}</p>
@@ -16,14 +16,32 @@
             <button class="btn btn-danger ">Solicitar</button>
           {{/if}}
           </form>
-          
           {{/ifRoleIsUser}}
-            <div class="btn btn-danger"></div>
-          {{#each post.applications as |application|}}
-            {{application.user.name}}
-          {{/each}}
-          </div>
+
+          
       </div>
     </div>
+    
+    {{#ifRoleIsPromoter currentUser}}
+      <div class="card">
+        <div class="card-body">
+          <h3>Solicitudes</h3>
+          {{#if post.applications}}
+            <p>
+              {{#each post.applications as |application|}}
+                <a href="/band/{{application.user._id}}/details">{{application.user.name}}</a> quiere participar en tu evento
+              {{/each}}
+            </p>
+          {{else}}
+          <p>No hay solicitudes</p>
+          {{/if}}
+        </div>
+      </div>
+    {{/ifRoleIsPromoter}}
+    
+    <form action="/promoter/post/{{post._id}}/add-band" method="POST">
+        <button class="btn btn-success">Aceptar</button>
+        <button class="btn btn-danger">Rechazar</button>
+    </form>
   </div>
 </div>

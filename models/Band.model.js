@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const { REQUIRED_FIELD_ERROR } = require("../constants/errorMessages");
 const User = require("../models/User.model");
+const Post = require("./Post.model");
 const bandSchema = mongoose.Schema({
     name: {
         type: String,
@@ -26,9 +27,16 @@ const bandSchema = mongoose.Schema({
         type: mongoose.SchemaTypes.ObjectId,
         ref: "User",
         required: true
-    }
+    },
+   
 
 });
+bandSchema.virtual("post", {
+    ref: "Post",
+    foreignField: "band",
+    localField: "_id",
+    justOne: false
+})
 
 const Band = mongoose.model("Band", bandSchema);
 module.exports = Band;

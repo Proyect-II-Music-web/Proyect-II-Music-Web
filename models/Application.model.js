@@ -10,7 +10,7 @@ const applicationSchema = mongoose.Schema({
     },
     post: {
         type: mongoose.SchemaTypes.ObjectId,
-        ref: Post.modelName,
+        ref: "Post",
         required: true
     }
 
