@@ -16,7 +16,15 @@ hbs.registerHelper('ifRoleIsUser', function(currentUser, options) {
   }
 });
 hbs.registerHelper('ifUserHasBand', function(currentUser, options) {
-  if (currentUser && currentUser.bands) {
+  if (currentUser && currentUser.band) {
+    return options.fn(this);
+  } else {
+    return options.inverse(this);
+  }
+});
+
+hbs.registerHelper('ifPostIsClosed', function(currentUser, options) {
+  if (currentUser && currentUser.posts.isClosed) {
     return options.fn(this);
   } else {
     return options.inverse(this);
