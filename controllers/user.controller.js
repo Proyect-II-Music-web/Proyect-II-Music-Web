@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const User = require("../models/User.model");
-const Band = require("../models/Band.model")
+const Band = require("../models/Band.model");
+const Post = require("../models/Post.model");
 module.exports.userRegister = (req, res, next) => {
     res.render("user/register");
 };
@@ -61,12 +62,19 @@ module.exports.doUserLogin = (req, res, next) => {
     .catch((err) => next(err));
 };
 
-module.exports.logout = (req, res, next) => {
-  req.session.destroy();
-  res.redirect("/user/login");
-}
+
 module.exports.userProfile = (req, res, next) => {
   console.log(req.currentUser);
   res.render("user/profile")
 };
-
+module.exports.getPostForPublic = (req, res, next) => {
+  Post.find({isClosed: false})
+    .then((posts) => {
+      res.render("user/list-post-public", {posts})
+    })
+    .catch((err) => next(err))
+}
+module.exports.logout = (req, res, next) => {
+  req.session.destroy();
+  res.redirect("/user/login");
+}

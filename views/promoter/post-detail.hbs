@@ -40,11 +40,12 @@
           {{/if}}
         </div>
       </div>
+      <form action="/promoter/post/{{post._id}}/close-post" method="POST">
+        <button class="btn btn-success">Cerrar evento</button>
+      </form>
     {{/ifRoleIsPromoter}}
     
-    <form action="/promoter/post/{{post._id}}/close-post" method="POST">
-        <button class="btn btn-success">Cerrar evento</button>
-    </form>
+    
     
   </div>
 </div>
