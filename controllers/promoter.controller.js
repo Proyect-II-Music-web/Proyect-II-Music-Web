@@ -32,7 +32,6 @@ module.exports.getPosts = (req, res, next) => {
   const userIsPromoter = req.currentUser.role === 'promoter';
   const userHasBands = req.currentUser?.bands?.length > 0;
   Post.find(userIsPromoter ? {owner: req.currentUser.id} : {isClosed: !userHasBands})
-    //.populate("posts")
     .then((posts) => {
       res.render("promoter/list", { posts });
     })
@@ -41,9 +40,15 @@ module.exports.getPosts = (req, res, next) => {
 module.exports.postDetail = (req, res, next) => {
   const {postId} = req.params;
   Post.findById(postId)
-    //.populate({path: "bands", populate: {path:"band"}})
-    .populate({path: "applications", populate:{path: "user"}})
-    
+    .populate({ 
+      path: "applications", 
+      populate:{
+        path: "user", 
+        populate: { 
+          path: 'band'
+        }
+      }
+    })    
     .then((post) => {
       console.log("postWithBanns", post);
       if (!post) {
@@ -61,11 +66,20 @@ module.exports.postDetail = (req, res, next) => {
 };
 module.exports.addBand = (req, res, next) => {
   const {postId} = req.params;
-  Post.findById(postId)
-    .populate("band")
+  Post.findByIdAndUpdate(postId, {bands: req.params.bandId})
+    .populate("bands")
     .then((post) => {
       console.log(post);
-      res.render("promoter/posts-with-band")
+      res.render("promoter/posts-with-band", {post})
+    })
+    .catch((err) => next(err))
+}
+module.exports.closePostEvent = (req, res, next) => {
+  const {postId} = req.params;
+  Post.findByIdAndUpdate(postId, {isClosed: true}, { new: true})
+    .then((post) => {
+      console.log(post);
+      res.redirect("/promoter/list-posts");
     })
     .catch((err) => next(err))
 }

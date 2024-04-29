@@ -35,10 +35,9 @@ const postSchema = mongoose.Schema(
             ref: "User",
             required: true
         },
-        band: {
-            type: mongoose.SchemaTypes.ObjectId,
-            ref: "Band",
-            required: true 
+        bands: {
+            type: [mongoose.SchemaTypes.ObjectId],
+            ref: "Band"
         }
 
     },

@@ -30,8 +30,16 @@ const bandSchema = mongoose.Schema({
     },
    
 
+},
+{
+    toObject: {
+        virtuals: true
+    },
+    toJSON: {
+        virtuals: true
+    }
 });
-bandSchema.virtual("post", {
+bandSchema.virtual("posts", {
     ref: "Post",
     foreignField: "band",
     localField: "_id",

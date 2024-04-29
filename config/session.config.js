@@ -28,7 +28,7 @@ module.exports.sessionConfig = expressSession({
 module.exports.getCurrentUser = (req, res, next) => {
     if (req.session.userId) {
         User.findById(req.session.userId)
-            .populate("bands")
+            .populate("band")
         //Aqui pupularemos el post del evento para tenerlo en la session
             .then((user) => {
                 req.currentUser = user;

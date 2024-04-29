@@ -66,6 +66,7 @@ module.exports.logout = (req, res, next) => {
   res.redirect("/user/login");
 }
 module.exports.userProfile = (req, res, next) => {
+  console.log(req.currentUser);
   res.render("user/profile")
 };
 

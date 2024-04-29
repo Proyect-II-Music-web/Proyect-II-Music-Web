@@ -21,5 +21,5 @@ module.exports.bandDetails = (req, res, next) => {
       console.log("bands",bands);
       res.render("band/band-details", {bands})
     })
-    .catch((err) => next())
+    .catch((err) => next(err))
 };

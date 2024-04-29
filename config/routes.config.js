@@ -20,6 +20,7 @@ const {
     getPosts,
     postDetail,
     addBand,
+    closePostEvent,
 } = require("../controllers/promoter.controller");
 const {
     doApplicate
@@ -57,7 +58,8 @@ router.get("/promoter/post-event", isAuthenticated, isPromoter, createPost);
 router.post("/promoter/post-event", isAuthenticated, isPromoter, doCreatePost)
 router.get("/promoter/list-posts",isAuthenticated, getPosts);
 router.get("/promoter/post/:postId", isAuthenticated, postDetail);
-router.post("/promoter/post/:postId/add-band",isAuthenticated, isPromoter, addBand)
+router.post("/promoter/post/:postId/add-band/:bandId",isAuthenticated, isPromoter, addBand);
+router.post("/promoter/post/:postId/close-post", closePostEvent)
 
 //Solicitud
 router.post("/promoter/post/:postId/application", doApplicate);

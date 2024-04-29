@@ -30,6 +30,9 @@
             <p>
               {{#each post.applications as |application|}}
                 <a href="/band/{{application.user._id}}/details">{{application.user.name}}</a> quiere participar en tu evento
+                <form action="/promoter/post/{{post._id}}/add-band/{{application.user.band._id}}" method="POST">
+                  <button class="btn btn-success">Aceptar</button>
+                </form>
               {{/each}}
             </p>
           {{else}}
@@ -39,9 +42,9 @@
       </div>
     {{/ifRoleIsPromoter}}
     
-    <form action="/promoter/post/{{post._id}}/add-band" method="POST">
-        <button class="btn btn-success">Aceptar</button>
-        <button class="btn btn-danger">Rechazar</button>
+    <form action="/promoter/post/{{post._id}}/close-post" method="POST">
+        <button class="btn btn-success">Cerrar evento</button>
     </form>
+    
   </div>
 </div>

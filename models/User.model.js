@@ -49,11 +49,11 @@ userSchema.virtual("applications", {
   justOne: false
 })
 
-userSchema.virtual("bands", {
+userSchema.virtual("band", {
   ref: "Band",
   foreignField: "owner",
   localField: "_id",
-  justOne: false
+  justOne: true
 })
 userSchema.virtual("posts", {
   ref: "Post",
