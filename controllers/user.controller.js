@@ -64,11 +64,10 @@ module.exports.doUserLogin = (req, res, next) => {
 
 
 module.exports.userProfile = (req, res, next) => {
-  console.log(req.currentUser);
   res.render("user/profile")
 };
 module.exports.getPostForPublic = (req, res, next) => {
-  Post.find({isClosed: false})
+  Post.find({isClosed: true})
     .then((posts) => {
       res.render("user/list-post-public", {posts})
     })

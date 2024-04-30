@@ -12,23 +12,34 @@
           <p class="card-text">Tags: {{post.tags}}</p>
           <p class="card-text">Fecha: {{post.date}}</p>
           <p class="card-text">Lugar: {{post.place}}</p>
+          <p>bandas: {{#each post.bands as |band|}}
+            {{band.name}}
+            {{/each}}
+          </p>
           {{#ifRoleIsUser currentUser}}
-            {{#if post.isClosed}}
-              <form action="/promoter/post/{{post._id}}/application" method="POST">
-              {{#if applicated}}
-                <button class="btn btn-primary ">Solicitado</button>
-              {{else}}
-                <button class="btn btn-danger ">Solicitar</button>
-              {{/if}}
-              </form>
-            {{/if}}
-          {{/ifRoleIsUser}}
+            {{#ifPostIsClosed post.isClosed}}
+                <form action="/promoter/post/{{post._id}}/application" method="POST">
+                {{#if applicated}}
+                  <button class="btn btn-primary ">Solicitado</button>
+                {{else}}
+                  <button class="btn btn-danger ">Solicitar</button>
+                {{/if}}
+                </form>
+            {{/ifPostIsClosed}}
 
-          
+            <form action="/user/post/{{post._id}}/assist" method="POST">
+                {{#if applicated}}
+                  <button class="btn btn-primary ">Asistirás</button>
+                {{else}}
+                  <button class="btn btn-danger ">Asistir</button>
+                {{/if}}
+                </form>
+          {{/ifRoleIsUser}}
       </div>
     </div>
     
     {{#ifRoleIsPromoter currentUser}}
+    {{#ifPostIsClosed post.isClosed}}
       <div class="card">
         <div class="card-body">
           <h3>Solicitudes</h3>
@@ -36,7 +47,7 @@
             <p>
               {{#each post.applications as |application|}}
                 <a href="/band/{{application.user._id}}/details">{{application.user.name}}</a> quiere participar en tu evento
-                <form action="/promoter/post/{{post._id}}/add-band/{{application.user.band._id}}" method="POST">
+                <form action="/promoter/post/{{post._id}}/add-band/{{application.user.band._id}}/{{application._id}}" method="POST">
                   <button class="btn btn-success">Aceptar</button>
                 </form>
               {{/each}}
@@ -49,6 +60,7 @@
       <form action="/promoter/post/{{post._id}}/close-post" method="POST">
         <button class="btn btn-success">Cerrar evento</button>
       </form>
+      {{/ifPostIsClosed}}
     {{/ifRoleIsPromoter}}
     
     

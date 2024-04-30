@@ -29,14 +29,17 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/promoter/post-event">Crea tu Evento</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/promoter/list-posts">Eventos del Promotor</a>
+                    </li>
                     {{/ifRoleIsPromoter}}
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="/promoter/list-posts">Eventos para publico</a>
+                        <a class="nav-link" href="/user/list-post/public">Eventos para publico</a>
                     </li>
                     {{#ifUserHasBand currentUser}}
                     <li class="nav-item">
-                        <a class="nav-link" href="/user/list-post/public">Eventos para bandas</a>
+                        <a class="nav-link" href="/promoter/list-posts">Eventos para bandas</a>
                     </li>
                     {{/ifUserHasBand}}
                     </ul>

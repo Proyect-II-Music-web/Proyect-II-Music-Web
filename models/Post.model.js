@@ -38,6 +38,9 @@ const postSchema = mongoose.Schema(
         bands: {
             type: [mongoose.SchemaTypes.ObjectId],
             ref: "Band"
+        },
+        maxForum: {
+            type: Number,
         }
 
     },

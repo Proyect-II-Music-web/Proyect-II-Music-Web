@@ -31,7 +31,8 @@ module.exports.doCreatePost = (req, res, next) => {
 module.exports.getPosts = (req, res, next) => {
   const userIsPromoter = req.currentUser.role === 'promoter';
   const userHasBands = req.currentUser?.bands?.length > 0;
-  Post.find(userIsPromoter ? {owner: req.currentUser.id} : {isClosed: !userHasBands})
+  //Post.find(userIsPromoter ? {owner: req.currentUser.id} : {isClosed: !userHasBands})
+  Post.find(userIsPromoter ? {owner: req.currentUser.id} : {isClosed: false})
     .then((posts) => {
       res.render("promoter/list", { posts });
     })
@@ -48,9 +49,9 @@ module.exports.postDetail = (req, res, next) => {
           path: 'band'
         }
       }
-    })    
+    })
+    .populate("bands")
     .then((post) => {
-      console.log("postWithBanns", post);
       if (!post) {
         next(createError(404, "No tienes eventos"))
       }
@@ -65,12 +66,14 @@ module.exports.postDetail = (req, res, next) => {
     .catch((err) => next())
 };
 module.exports.addBand = (req, res, next) => {
-  const {postId} = req.params;
-  Post.findByIdAndUpdate(postId, {bands: req.params.bandId})
-    .populate("bands")
+  const {postId, bandId, appId} = req.params;
+  Post.findByIdAndUpdate(postId, { $push: { bands: bandId } }, { new: true})
     .then((post) => {
-      console.log(post);
-      res.render("promoter/posts-with-band", {post})
+      return Application.findByIdAndDelete(appId)
+      .then(() => {
+        res.redirect(`/promoter/post/${postId}`);
+      })
+      
     })
     .catch((err) => next(err))
 }

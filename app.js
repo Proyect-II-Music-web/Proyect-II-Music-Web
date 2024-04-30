@@ -1,4 +1,7 @@
 require('dotenv').config()
+const Post = require("./models/Post.model.js");
+const User = require("./models/User.model.js");
+const Application = require("./models/Application.model.js");
 
 const express = require('express');
 const logger = require('morgan');
@@ -28,8 +31,26 @@ hbs.registerPartials(path.join(__dirname, "views/partials"));
 
 app.use(session.sessionConfig);
 app.use(session.getCurrentUser);
+
 app.use(routes);
 
 app.listen(3000, () => {
+  // Post.find()
+  // .then((posts) => {
+  //   User.find()
+  //     .then((users) => {
+  //      const appsPromises = users.map((user) => {
+  //         return Application.create({
+  //           user: user._id,
+  //           post: posts[0]._id
+  //         })
+  //     })
+
+  //       Promise.all(appsPromises)
+  //       .then((apps) => {
+  //         console.log(apps)
+  //       })
+  //   } )
+  // })
     console.log('App running at port 3000')
   });

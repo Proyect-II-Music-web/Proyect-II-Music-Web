@@ -23,8 +23,8 @@ hbs.registerHelper('ifUserHasBand', function(currentUser, options) {
   }
 });
 
-hbs.registerHelper('ifPostIsClosed', function(currentUser, options) {
-  if (currentUser && currentUser.posts.isClosed) {
+hbs.registerHelper('ifPostIsClosed', function(isclosed, options) {
+  if (isclosed === false) {
     return options.fn(this);
   } else {
     return options.inverse(this);
