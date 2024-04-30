@@ -66,6 +66,24 @@ module.exports.doUserLogin = (req, res, next) => {
 module.exports.userProfile = (req, res, next) => {
   res.render("user/profile")
 };
+module.exports.doAssist = (req, res, next) => {
+  //buscar el post y comprobar que isClosed = false if
+  const { postId } = req.params;
+
+  //Post.findByIdAndUpdate(postId, { $addToSet: { assistans:  req.currentUser._id} })
+  Post.updateOne(
+    { 
+        _id: postId,
+        maxForum: { $lt: { $size: '$assitans' } } 
+    },
+    { $addToSet: { assitans: req.currentUser._id } } 
+  )
+  .then((post) => {
+    res.redirect(`/promoter/post/${postId}`);
+  })
+  .catch((err) => next(err))
+};
+
 module.exports.getPostForPublic = (req, res, next) => {
   Post.find({isClosed: true})
     .then((posts) => {

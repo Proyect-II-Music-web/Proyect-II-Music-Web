@@ -27,13 +27,9 @@
                 </form>
             {{/ifPostIsClosed}}
 
-            <form action="/user/post/{{post._id}}/assist" method="POST">
-                {{#if applicated}}
-                  <button class="btn btn-primary ">Asistirás</button>
-                {{else}}
-                  <button class="btn btn-danger ">Asistir</button>
-                {{/if}}
-                </form>
+            <form action="/user/{{post._id}}/assist" method="POST">
+               <button class="btn btn-danger ">Asistir</button>
+            </form>
           {{/ifRoleIsUser}}
       </div>
     </div>

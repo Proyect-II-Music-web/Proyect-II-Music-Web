@@ -6,6 +6,7 @@ const {
     doUserLogin,
     userProfile,
     getPostForPublic,
+    doAssist,
     logout
 } = require("../controllers/user.controller");
 const { 
@@ -47,6 +48,7 @@ router.get("/user/login", isNoAuthenticated, userLogin);
 router.post("/user/login", isNoAuthenticated, doUserLogin);
 router.get("/user/profile", isAuthenticated, userProfile);
 router.get("/user/list-post/public", isAuthenticated, getPostForPublic)
+router.post("/user/:postId/assist", isAuthenticated, doAssist)
 router.get("/user/logout", isAuthenticated, logout)
 
 //Band

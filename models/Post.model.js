@@ -41,7 +41,13 @@ const postSchema = mongoose.Schema(
         },
         maxForum: {
             type: Number,
-        }
+            required: [true, REQUIRED_FIELD_ERROR],
+            min: 0
+        },
+        assistans: {
+            type: [mongoose.SchemaTypes.ObjectId],
+            ref: "User"
+        },
 
     },
     {
