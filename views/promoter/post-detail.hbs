@@ -3,19 +3,25 @@
     <div class="col-md-8 offset-md-2">
       <div class="card mb-3">
         <div class="card-body">
-          <h2 class="card-title">{{post.title}}</h2>
+          {{#if post.isClosed}}
+            <h2 class="card-tittle">Evento para público</h2>
+          {{else}}
+            <h2 class="card-title">{{post.title}}</h2>
+          {{/if}}
           <p class="card-text">{{post.description}}</p>
           <p class="card-text">Tags: {{post.tags}}</p>
           <p class="card-text">Fecha: {{post.date}}</p>
           <p class="card-text">Lugar: {{post.place}}</p>
           {{#ifRoleIsUser currentUser}}
-          <form action="/promoter/post/{{post._id}}/application" method="POST">
-          {{#if applicated}}
-            <button class="btn btn-primary ">Solicitado</button>
-          {{else}}
-            <button class="btn btn-danger ">Solicitar</button>
-          {{/if}}
-          </form>
+            {{#if post.isClosed}}
+              <form action="/promoter/post/{{post._id}}/application" method="POST">
+              {{#if applicated}}
+                <button class="btn btn-primary ">Solicitado</button>
+              {{else}}
+                <button class="btn btn-danger ">Solicitar</button>
+              {{/if}}
+              </form>
+            {{/if}}
           {{/ifRoleIsUser}}
 
           
