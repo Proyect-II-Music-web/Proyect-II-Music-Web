@@ -17,7 +17,7 @@
             {{/each}}
           </p>
           {{#ifRoleIsUser currentUser}}
-            {{#ifPostIsClosed post.isClosed}}
+            {{#ifPostIsNotClosed post.isClosed}}
                 <form action="/promoter/post/{{post._id}}/application" method="POST">
                 {{#if applicated}}
                   <button class="btn btn-primary ">Solicitado</button>
@@ -25,11 +25,11 @@
                   <button class="btn btn-danger ">Solicitar</button>
                 {{/if}}
                 </form>
-            {{/ifPostIsClosed}}
-
+            {{else}}
             <form action="/user/{{post._id}}/assist" method="POST">
                <button class="btn btn-danger ">Asistir</button>
             </form>
+            {{/ifPostIsNotClosed}}
           {{/ifRoleIsUser}}
       </div>
     </div>
