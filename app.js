@@ -51,6 +51,20 @@ app.listen(3000, () => {
   //         console.log(apps)
   //       })
   //   } )
-  // })
+  // }) 
+  //ASISTENCIA
+//  User.find()
+//    .then((users) => {
+//        const appsPromises = users.map((user) => {
+//           return Post.updateOne(
+//             {title: "Evento prueba add band"}, { $addToSet: { assitans: user._id } }
+//           )
+//     })
+
+//         Promise.all(appsPromises)
+//         .then((assists) => {
+//           console.log(assists)
+//         })
+//     })
     console.log('App running at port 3000')
   });

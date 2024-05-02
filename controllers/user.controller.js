@@ -5,7 +5,7 @@ const Post = require("../models/Post.model");
 const genresArr = require('../constants/genres');
 
 module.exports.userRegister = (req, res, next) => {
-    res.render("user/register");
+  res.render("user/register");
 };
 module.exports.doUserRegister = (req, res, next) => {
   const renderWithErrors = (errors, values) => {
@@ -28,13 +28,13 @@ module.exports.userLogin = (req, res, next) => {
 };
 module.exports.doUserLogin = (req, res, next) => {
   //deconstrir el body
-  const {email, password} = req.body;
+  const { email, password } = req.body;
   //crear una función de errores
   const renderWithErrors = () => {
     res.render("user/login", {
       errors: {
-        message: "Email o contraseña incorrectos"
-      }
+        message: "Email o contraseña incorrectos",
+      },
     });
   };
   //Comprobamos que los campos no esten vacios
@@ -42,21 +42,20 @@ module.exports.doUserLogin = (req, res, next) => {
     renderWithErrors();
   }
   //Ahora buscamos si existe el usuario por su email
-  User.findOne({email: email})
+  User.findOne({ email: email })
     .then((user) => {
       //si existe user será truty
       if (user) {
-        return user.checkPassword(password)
-          .then((match) => {
-            if (match) {
-              //Aquí se pasa el id del usuario a la session
-              req.session.userId = user.id;
-              //Si todo va bien nos redirige a la ruta del perfil
-              res.redirect("/user/profile")
-            } else {
-              renderWithErrors();
-            }
-          })
+        return user.checkPassword(password).then((match) => {
+          if (match) {
+            //Aquí se pasa el id del usuario a la session
+            req.session.userId = user.id;
+            //Si todo va bien nos redirige a la ruta del perfil
+            res.redirect("/user/profile");
+          } else {
+            renderWithErrors();
+          }
+        });
       } else {
         renderWithErrors();
       }
@@ -64,41 +63,34 @@ module.exports.doUserLogin = (req, res, next) => {
     .catch((err) => next(err));
 };
 
-
 module.exports.userProfile = (req, res, next) => {
-  res.render("user/profile")
+  res.render("user/profile");
 };
 module.exports.doAssist = (req, res, next) => {
-  //buscar el post y comprobar que isClosed = false if
   const { postId } = req.params;
 
   //Post.findByIdAndUpdate(postId, { $addToSet: { assistans:  req.currentUser._id} })
   Post.updateOne(
-    { 
-        _id: postId,
-        maxForum: { $lt: { $size: '$assitans' } } 
+    {
+      _id: postId,
+      maxForum: { $lt: { $size: "$assitans" } },
     },
-    { $addToSet: { assitans: req.currentUser._id } } 
+    { $addToSet: { assitans: req.currentUser._id } }
   )
-  .then((post) => {
-    res.redirect(`/promoter/post/${postId}`);
-  })
-  .catch((err) => next(err))
+    .then((post) => {
+      res.redirect(`/promoter/post/${postId}`);
+    })
+    .catch((err) => next(err));
 };
 
 module.exports.getPostForPublic = (req, res, next) => {
-  const {genres} = req.query;
-  const query = {};
-  if(query) {
-    query.genres = genres;
-  }
-  Post.find({genres, isClosed: true})
+  Post.find({isClosed: true})
     .then((posts) => {
-      res.render("user/list-post-public", {posts, genres: genresArr})
+      res.render("user/list-post-public", {posts})
     })
-    .catch((err) => next(err))
-}
+    .catch((err) => next(err));
+};
 module.exports.logout = (req, res, next) => {
   req.session.destroy();
   res.redirect("/user/login");
-}
+};
