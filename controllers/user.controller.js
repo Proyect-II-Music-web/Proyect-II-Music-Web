@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const User = require("../models/User.model");
 const Band = require("../models/Band.model");
 const Post = require("../models/Post.model");
+const genresArr = require('../constants/genres');
+
 module.exports.userRegister = (req, res, next) => {
     res.render("user/register");
 };
@@ -85,9 +87,14 @@ module.exports.doAssist = (req, res, next) => {
 };
 
 module.exports.getPostForPublic = (req, res, next) => {
-  Post.find({isClosed: true})
+  const {genres} = req.query;
+  const query = {};
+  if(query) {
+    query.genres = genres;
+  }
+  Post.find({genres, isClosed: true})
     .then((posts) => {
-      res.render("user/list-post-public", {posts})
+      res.render("user/list-post-public", {posts, genres: genresArr})
     })
     .catch((err) => next(err))
 }

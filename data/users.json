@@ -1,0 +1,31 @@
+[
+    {
+      "user": {
+        "name": "Usuario 1",
+        "email": "usuario1@example.com",
+        "password": "password1",
+        "role": "user"
+      },
+      "band": {
+        "name": "Banda 1",
+        "description": "Descripción de la banda 1",
+        "tags": ["rock"],
+        "members": ["Miembro 1", "Miembro 2"]
+      }
+    },
+    {
+      "user": {
+        "name": "Usuario 2",
+        "email": "usuario2@example.com",
+        "password": "password2",
+        "role": "user"
+      },
+      "band": {
+        "name": "Banda 2",
+        "description": "Descripción de la banda 2",
+        "tags": ["pop"],
+        "members": ["Miembro 1", "Miembro 2"]
+      }
+    }]
+
+  
