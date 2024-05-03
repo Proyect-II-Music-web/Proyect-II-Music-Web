@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js -e js,hbs",
-    "seed": "node ./bin/seeds.js"
+    "seed": "node ./bin/seeds.js",
+    "seed-appl": "node ./bin/index.js"
   },
   "author": "",
   "license": "ISC",

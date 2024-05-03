@@ -35,7 +35,7 @@
     </div>
     
     {{#ifRoleIsPromoter currentUser}}
-    {{#ifPostIsClosed post.isClosed}}
+    {{#ifPostIsNotClosed post.isClosed}}
       <div class="card">
         <div class="card-body">
           <h3>Solicitudes</h3>
@@ -56,7 +56,7 @@
       <form action="/promoter/post/{{post._id}}/close-post" method="POST">
         <button class="btn btn-success">Cerrar evento</button>
       </form>
-      {{/ifPostIsClosed}}
+      {{/ifPostIsNotClosed}}
     {{/ifRoleIsPromoter}}
     
     

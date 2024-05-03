@@ -84,9 +84,14 @@ module.exports.doAssist = (req, res, next) => {
 };
 
 module.exports.getPostForPublic = (req, res, next) => {
-  Post.find({isClosed: true})
+  const { genres,  } = req.query;
+  const query = {isClosed: true}
+  if (genres) {
+    query.tags = genres
+  }
+  Post.find(query)
     .then((posts) => {
-      res.render("user/list-post-public", {posts})
+      res.render("user/list-post-public", {posts, genres: genresArr})
     })
     .catch((err) => next(err));
 };

@@ -9,7 +9,7 @@ mongoose.connect('mongodb://localhost:27017/music-web', {
   console.log('Conexión a la base de datos establecida.');
 
   // Leer el archivo JSON con los datos de los usuarios y sus bandas
-  const usuariosConBandas = require('./usuarios_con_bandas.json');
+  const usuariosConBandas = require('../data/users.json');
 
   // Iterar sobre cada usuario con su banda
   for (const data of usuariosConBandas) {

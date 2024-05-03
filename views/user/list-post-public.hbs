@@ -1,12 +1,11 @@
-{{#each posts as |post|}}
-{{#each genres as |genre|}}
-{{#each post.tags as |tag|}}
-  <a href="/user/list-post/public?genres={{tag}}">
 
-    {{genre}}
-  </a>
+{{#each genres as |genre|}} 
+
+  <a href="/user/list-post/public?genres={{genre}}">{{genre}}</a>
+
 {{/each}}
-{{/each}}
+
+{{#each posts as |post|}}
   <div class="card">
     <div class="card-body">
       <h5 class="card-title">{{post.title}}</h5>
@@ -20,4 +19,7 @@
       >Ver más</a>
     </div>
   </div>
+{{/each}}
+{{#each posts as |post|}}
+  Tags: {{post.tags}}
 {{/each}}

@@ -35,23 +35,24 @@ app.use(session.getCurrentUser);
 app.use(routes);
 
 app.listen(3000, () => {
-  // Post.find()
-  // .then((posts) => {
-  //   User.find()
-  //     .then((users) => {
-  //      const appsPromises = users.map((user) => {
-  //         return Application.create({
-  //           user: user._id,
-  //           post: posts[0]._id
-  //         })
-  //     })
+  
+  //  Post.find()
+  //  .then((posts) => {
+  //    User.find({role: "user"})
+  //      .then((users) => {
+  //       const appsPromises = users.map((user) => {
+  //          return Application.create({
+  //            user: user._id,
+  //            post: posts[4]._id
+  //          })
+  //      })
 
   //       Promise.all(appsPromises)
-  //       .then((apps) => {
-  //         console.log(apps)
-  //       })
-  //   } )
-  // }) 
+  //      .then((apps) => {
+  //        console.log(apps)
+  //      })
+  //  } )
+  // })  
   //ASISTENCIA
 //  User.find()
 //    .then((users) => {

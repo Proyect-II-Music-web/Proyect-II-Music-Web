@@ -9,7 +9,7 @@
       "band": {
         "name": "Banda 1",
         "description": "Descripción de la banda 1",
-        "tags": ["rock"],
+        "tags": ["rock", "jazz"],
         "members": ["Miembro 1", "Miembro 2"]
       }
     },
@@ -23,8 +23,36 @@
       "band": {
         "name": "Banda 2",
         "description": "Descripción de la banda 2",
-        "tags": ["pop"],
+        "tags": ["pop", "rock"],
         "members": ["Miembro 1", "Miembro 2"]
+      }
+    },
+    {
+      "user": {
+        "name": "Usuario 3",
+        "email": "usuario3@example.com",
+        "password": "password3",
+        "role": "user"
+      },
+      "band": {
+        "name": "Banda 3",
+        "description": "Descripción de la banda 3",
+        "tags": ["clasica", "bossa"],
+        "members": ["Miembro 3", "Miembro 3"]
+      }
+    },
+    {
+      "user": {
+        "name": "Usuario 4",
+        "email": "usuario4@example.com",
+        "password": "password2",
+        "role": "user"
+      },
+      "band": {
+        "name": "Banda 4",
+        "description": "Descripción de la banda 4",
+        "tags": ["pop"],
+        "members": ["Miembro 1", "Miembro 4"]
       }
     }]
 
