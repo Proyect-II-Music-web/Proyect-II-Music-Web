@@ -28,6 +28,9 @@ const bandSchema = mongoose.Schema({
         ref: "User",
         required: true
     },
+    avatar: {
+        type: String
+    }
    
 
 },

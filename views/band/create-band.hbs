@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="col-md-8 m-auto">
     <h1>Crea tu Banda</h1>
-    <form action="/band/create-band" method="POST">
+    <form action="/band/create-band" method="POST" enctype="multipart/form-data">
       <div class="mb-3">
         <label for="name" class="form-label">Nombre</label>
         <input
@@ -30,6 +30,15 @@
           id="tags"
           name="tags"
           required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="avatar" class="form-label">Tu foto</label>
+        <input
+          type="file"
+          class="form-control"
+          id="avatar"
+          name="avatar"
         />
       </div>
       <div class="mb-3">

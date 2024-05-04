@@ -7,6 +7,12 @@ module.exports.createBand = (req, res, next) => {
 
 module.exports.doCreateBand = (req, res, next) =>  {
   req.body.owner = req.currentUser.id;
+  console.log(req.file);
+  //si se ha subido una imagen
+  if (req.file) {
+    req.body.avatar = req.file.path;
+  }
+
   Band.create(req.body)
   .then(() => {
     res.redirect("/user/profile")

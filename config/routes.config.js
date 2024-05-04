@@ -7,6 +7,8 @@ const {
     userProfile,
     getPostForPublic,
     doAssist,
+    editUserProfile,
+    updateUserProfile,
     logout
 } = require("../controllers/user.controller");
 const { 
@@ -38,6 +40,7 @@ const {
     userHasBand
 } = require("../middlewares/roles.middleware")
 
+const upload = require("./storage.config");
 
 router.get("/", (req, res, next) => res.render("home"));
 
@@ -49,12 +52,14 @@ router.post("/user/login", isNoAuthenticated, doUserLogin);
 router.get("/user/profile", isAuthenticated, userProfile);
 router.get("/user/list-post/public", isAuthenticated, getPostForPublic)
 router.post("/user/:postId/assist", isAuthenticated, doAssist)
+router.get("/user/edit", isAuthenticated, upload.single("avatar"), editUserProfile) 
+router.post("/user/edit", isAuthenticated, upload.single("avatar"), updateUserProfile) 
 router.get("/user/logout", isAuthenticated, logout)
 
 //Band
 
 router.get("/band/create-band", isAuthenticated, createBand)
-router.post("/band/create-band", isAuthenticated, doCreateBand)
+router.post("/band/create-band", isAuthenticated, upload.single("avatar"), doCreateBand)
 router.get("/band/:ownerId/details", isAuthenticated, bandDetails)
 //Promoter
 router.get("/promoter/profile",isAuthenticated, isPromoter,  promoterProfile);

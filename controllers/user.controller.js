@@ -97,6 +97,18 @@ module.exports.getPostForPublic = (req, res, next) => {
     })
     .catch((err) => next(err));
 };
+module.exports.editUserProfile = (req, res, next) => {
+  res.render("user/edit");
+};
+
+module.exports.updateUserProfile = (req, res, next) => {
+  User.findByIdAndUpdate(req.currentUser._id, req.body, { new: true })
+  .then(() => {
+    res.redirect("/user/profile")
+  })
+  .catch((err) => next(err))
+  res.render("user/edit");
+};
 
 module.exports.logout = (req, res, next) => {
   req.session.destroy();

@@ -1,7 +1,14 @@
-{{currentUser.name}}
-{{#ifRoleIsUser currentUser}}
+<div class="container">
 
+    {{#ifRoleIsUser currentUser}}
 
-    {{currentUser.band.name}}
+        <p>Nombre: {{currentUser.name}}</p>
+        <p>Banda: {{currentUser.band.name}}</p>
+        <div>
+            <p>Avatar:</p>
+            <img src="{{currentUser.band.avatar}}" width="100" alt="img">
+        </div>
 
-{{/ifRoleIsUser}}
+        <a href="/user/edit" class="btn btn-primary">Editar</a>
+    {{/ifRoleIsUser}}
+</div>

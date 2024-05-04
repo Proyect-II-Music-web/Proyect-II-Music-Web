@@ -33,6 +33,9 @@ const userSchema = mongoose.Schema(
       enum: ["user", "promoter"],
       default: "user",
     },
+    avatar: {
+      type: String,
+    }
     
   },
   {
