@@ -30,3 +30,11 @@ hbs.registerHelper('ifPostIsNotClosed', function(isClosed, options) {
     return options.inverse(this);
   }
 });
+
+hbs.registerHelper('ifMaxForumComplete', function(assistans, maxForum, options) {
+  if (assistans.length >= maxForum) {
+    return options.fn(this);
+  } else {
+    return options.inverse(this);
+  }
+});

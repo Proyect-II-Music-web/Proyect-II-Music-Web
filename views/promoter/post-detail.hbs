@@ -27,7 +27,7 @@
                 </form>
             {{else}}
             <form action="/user/{{post._id}}/assist" method="POST">
-               <button class="btn btn-danger ">Asistir</button>
+               <button class="btn btn-danger {{#ifMaxForumComplete post.assistans post.maxForum}}disabled{{/ifMaxForumComplete}}">Asistir</button>
             </form>
             {{/ifPostIsNotClosed}}
           {{/ifRoleIsUser}}
@@ -60,6 +60,22 @@
     {{/ifRoleIsPromoter}}
     
     
-    
+    <div class="row">
+  {{#each posts as |post|}}
+      <div class="col-md-4">
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            
+            
+            <p class="card-text">Fecha: {{ post.date }}</p>
+            <p class="card-text">Lugar: {{ post.place }}</p>
+            <a href="/promoter/post/{{post._id}}" class="btn" style="background-color: #26c9cc;">Ver más</a>
+          </div>
+        </div>
+      </div>
+  {{/each}}
+    </div>
   </div>
 </div>

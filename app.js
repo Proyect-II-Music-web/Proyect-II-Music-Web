@@ -36,36 +36,46 @@ app.use(routes);
 
 app.listen(3000, () => {
   
-  //  Post.find()
-  //  .then((posts) => {
-  //    User.find({role: "user"})
-  //      .then((users) => {
-  //       const appsPromises = users.map((user) => {
-  //          return Application.create({
-  //            user: user._id,
-  //            post: posts[4]._id
-  //          })
-  //      })
+  //   Post.find()
+  //   .then((posts) => {
+  //     User.find({role: "user"})
+  //       .then((users) => {
+  //        const appsPromises = users.map((user) => {
+  //           return Application.create({
+  //             user: user._id,
+  //             post: posts[4]._id
+  //           })
+  //       })
 
-  //       Promise.all(appsPromises)
-  //      .then((apps) => {
-  //        console.log(apps)
-  //      })
-  //  } )
-  // })  
+  //        Promise.all(appsPromises)
+  //       .then((apps) => {
+  //         console.log(apps)
+  //       })
+  //   } )
+  //  })  
   //ASISTENCIA
-//  User.find()
-//    .then((users) => {
-//        const appsPromises = users.map((user) => {
-//           return Post.updateOne(
-//             {title: "Evento prueba add band"}, { $addToSet: { assitans: user._id } }
-//           )
-//     })
+   Post.findOne({
+    title:"Noche de Reggae"})
+   .then((post) => {
+     User.find()
+       .then((users) => {
+           const appsPromises = users.map((user) => {
+             return Post.updateOne(
+               {_id: post._id,
+                $expr: { $lt: [ { $size: "$assistans" }, "$maxForum" ] } },
+               { $addToSet: { assistans: user._id } }
+             )
+       })
 
-//         Promise.all(appsPromises)
-//         .then((assists) => {
-//           console.log(assists)
-//         })
-//     })
-    console.log('App running at port 3000')
-  });
+           Promise.all(appsPromises)
+           .then((assists) => {
+             console.log(assists)
+           })
+           .catch((err) => console.log(err))
+       })
+       console.log('App running at port 3000')
+     })
+
+
+
+  })

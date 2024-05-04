@@ -73,11 +73,13 @@ module.exports.doAssist = (req, res, next) => {
   Post.updateOne(
     {
       _id: postId,
-      maxForum: { $lt: { $size: "$assitans" } },
+      //maxForum: { $gt: { $size: "$assistans" } },
+      $expr: { $lt: [ { $size: "$assistans" }, "$maxForum" ] }
     },
-    { $addToSet: { assitans: req.currentUser._id } }
+    { $addToSet: { assistans: req.currentUser._id } }
   )
     .then((post) => {
+      console.log(post)
       res.redirect(`/promoter/post/${postId}`);
     })
     .catch((err) => next(err));
@@ -95,6 +97,7 @@ module.exports.getPostForPublic = (req, res, next) => {
     })
     .catch((err) => next(err));
 };
+
 module.exports.logout = (req, res, next) => {
   req.session.destroy();
   res.redirect("/user/login");
