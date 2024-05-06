@@ -13,3 +13,44 @@
         </div>
     {{/ifRoleIsUser}}
 </div>
+<div class="container mt-5 mb-4">
+  <div class="card">
+    <div class="card-header bg-dark text-light">
+      <h1 class="card-title">{{band.name}}</h1>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">
+          <img
+            src="https://images.prismic.io/sofarlive/0f8981b7-3dda-4be6-81b1-c5ace4399add_Enter_Basic_Info.jpg?auto=compress,format&rect=69,0,661,533&w=556&h=448"
+            alt="Band Avatar"
+            class="band-avatar mb-3"
+          />
+          <p>
+            <strong>Géneros musicales:</strong>
+            {{#each band.tags}}
+              <span class="tag">{{this}}</span>
+            {{/each}}
+          </p>
+          <p>
+            <strong>Miembros:</strong><br />
+            {{#each band.members}}
+              <span class="member">{{this}}</span><br />
+            {{/each}}
+          </p>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-youtube"></i>
+          <i class="fab fa-spotify"></i>
+        </div>
+        <div class="col-md-6 ms-auto">
+          <h2>Donec efficitur leo non imperdiet auctor. Vivamus accumsan erat id
+            tincidunt fringilla. Nam turpis elit</h2>
+          <p class="lead">{{band.description}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer bg-dark text-light">
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,24 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Roboto', sans-serif;
+}
+.band-avatar {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+    border: 5px solid #fff;
+}
+.tag {
+    background-color: #17a2b8;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-right: 5px;
+}
+.tag:last-child {
+    margin-right: 0;
+}
+.member {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
