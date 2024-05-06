@@ -14,7 +14,8 @@ const {
 const { 
     createBand,
     doCreateBand,
-    bandDetails
+    bandDetails,
+    editBand
 } = require("../controllers/band.controller");
 
 const {
@@ -61,6 +62,8 @@ router.get("/user/logout", isAuthenticated, logout)
 router.get("/band/create-band", isAuthenticated, createBand)
 router.post("/band/create-band", isAuthenticated, upload.single("avatar"), doCreateBand)
 router.get("/band/:ownerId/details", isAuthenticated, bandDetails)
+router.get("/band/:bandId/edit", isAuthenticated, editBand)
+router.post("/band/create-band", isAuthenticated, upload.single("avatar"), doCreateBand)
 //Promoter
 router.get("/promoter/profile",isAuthenticated, isPromoter,  promoterProfile);
 router.get("/promoter/post-event", isAuthenticated, isPromoter, createPost);
