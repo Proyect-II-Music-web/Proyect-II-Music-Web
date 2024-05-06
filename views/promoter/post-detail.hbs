@@ -2,39 +2,55 @@
   <div class="row">
     <div class="col-md-8 offset-md-2">
       <div class="card mb-3">
-        <div class="card-body">
-          {{#if post.isClosed}}
-            <h2 class="card-tittle">Evento para público</h2>
-          {{else}}
-            <h2 class="card-title">{{post.title}}</h2>
-          {{/if}}
-          <p class="card-text">{{post.description}}</p>
-          <p class="card-text">Tags: {{post.tags}}</p>
-          <p class="card-text">Fecha: {{post.date}}</p>
-          <p class="card-text">Lugar: {{post.place}}</p>
-          <p>Bandas:
-            {{#each post.bands as |band|}}
-            <a href="/band/{{band._id}}">{{band.name}}</a>
-            {{#unless @last}}, {{/unless}}
-            {{/each}}
-            </p>
-          {{#ifRoleIsUser currentUser}}
-            {{#ifPostIsNotClosed post.isClosed}}
-                <form action="/promoter/post/{{post._id}}/application" method="POST">
-                {{#if applicated}}
-                  <button class="btn btn-primary ">Solicitado</button>
+        <!-- Título del evento -->
+        <h2 class="card-title text-center">{{#if post.isClosed}}Evento para público{{else}}{{post.title}}{{/if}}</h2>
+        <div class="row">
+          <!-- Columna para el avatar del evento -->
+          <div class="col-md-4">
+            <div class="card-body">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNcpW3o3DxXJozyYe32u3ec5fcCDc-pEhoiQ&usqp=CAU" class="card-img" alt="Avatar del evento" style="width: 400px; height: 350px;">
+            </div>
+          </div>
+          <!-- Columna para los datos del evento -->
+          <div class="col-md-6 ms-auto">
+            <div class="card-body event-details-container">
+              <p class="card-text">{{post.description}}</p>
+              <p class="card-text">Tags: {{post.tags}}</p>
+              <p class="card-text">Fecha: {{post.date}}</p>
+              <p class="card-text">Lugar: {{post.place}}</p>
+              <p>Bandas:
+                {{#each post.bands as |band|}}
+                <a href="/band/{{band._id}}">{{band.name}}</a>
+                {{#unless @last}}, {{/unless}}
+                {{/each}}
+              </p>
+              <!-- Botones de acción -->
+              {{#ifRoleIsUser currentUser}}
+                {{#ifPostIsNotClosed post.isClosed}}
+                  <form action="/promoter/post/{{post._id}}/application" method="POST">
+                    {{#if applicated}}
+                      <button class="btn btn-primary">Solicitado</button>
+                    {{else}}
+                      <button class="btn btn-danger">Solicitar</button>
+                    {{/if}}
+                  </form>
                 {{else}}
-                  <button class="btn btn-danger ">Solicitar</button>
-                {{/if}}
-                </form>
-            {{else}}
-            <form action="/user/{{post._id}}/assist" method="POST">
-               <button class="btn btn-danger {{#ifMaxForumComplete post.assistans post.maxForum}}disabled{{/ifMaxForumComplete}}">Asistir</button>
-            </form>
-            {{/ifPostIsNotClosed}}
-          {{/ifRoleIsUser}}
+                  <form action="/user/{{post._id}}/assist" method="POST">
+                    <button class="btn btn-danger {{#ifMaxForumComplete post.assistans post.maxForum}}disabled{{/ifMaxForumComplete}}">Asistir</button>
+                  </form>
+                {{/ifPostIsNotClosed}}
+              {{/ifRoleIsUser}}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+</div>
+
+
+<h2> Proximos Eventos</h2>
+
     
     {{#ifRoleIsPromoter currentUser}}
     {{#ifPostIsNotClosed post.isClosed}}
