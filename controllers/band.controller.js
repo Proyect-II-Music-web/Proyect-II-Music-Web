@@ -29,3 +29,11 @@ module.exports.bandDetails = (req, res, next) => {
     })
     .catch((err) => next(err))
 };
+module.exports.editBand = (req, res, next) => {
+  const { bandId } = req.params;
+  Band.findById(bandId)
+    .then((band) => {
+      res.render("band/create-band", { band });
+    })
+    .catch((err) => next(err))
+};

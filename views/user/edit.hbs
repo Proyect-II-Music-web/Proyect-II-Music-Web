@@ -2,18 +2,14 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <h2>Registro de Usuario</h2>
-            <form action="/user/edit" method="POST">
+            <form action="/user/edit" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="name" class="form-label" >Nombre</label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{currentUser.name}}" required>
+                    <input type="text" class="form-control" id="name" name="name" value="{{currentUser.name}}" >
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="password" name="password" required minlength="8">
+                    <input type="email" class="form-control" id="email" name="email" value="{{currentUser.email}}">
                 </div>
             
                 <div class="mb-3">

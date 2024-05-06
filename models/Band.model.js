@@ -8,6 +8,9 @@ const bandSchema = mongoose.Schema({
         trim: true,
         required: [true, REQUIRED_FIELD_ERROR]
     },
+    cathFrase: {
+        type: String
+    },
 
     description: {
         type: String,

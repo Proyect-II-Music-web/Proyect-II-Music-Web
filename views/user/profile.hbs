@@ -1,18 +1,23 @@
 <div class="container">
-    {{#ifRoleIsUser currentUser}}
-        <div class="text-center mb-4">
-            <img src="{{currentUser.band.avatar}}" class="rounded-circle border-0" alt="Avatar" style="width: 100px;">
-        </div>
-        <div class="text-center">
-            <p class="mb-2">{{currentUser.name}}</p>
-            <p class="mb-2">Banda: {{currentUser.band.name}}</p>
-            <p class="mb-2">Email: {{currentUser.email}}</p>
-        </div>
-        <div class="text-center">
-            <a href="/user/edit" class="btn btn-primary">Editar Perfil</a>
-        </div>
-    {{/ifRoleIsUser}}
+  {{#ifRoleIsUser currentUser}}
+    <div class="text-center mb-4">
+      <img
+        src="{{currentUser.avatar}}"
+        class="rounded-circle border-0"
+        alt="Avatar"
+        style="width: 100px;"
+      />
+    </div>
+    <div class="text-center">
+      <p class="mb-2">{{currentUser.name}}</p>
+      <p class="mb-2">Email: {{currentUser.email}}</p>
+    </div>
+    <div class="text-center">
+      <a href="/user/edit" class="btn btn-primary">Editar Perfil</a>
+    </div>
+  {{/ifRoleIsUser}}
 </div>
+{{#if band}}
 <div class="container mt-5 mb-4">
   <div class="card">
     <div class="card-header bg-dark text-light">
@@ -41,6 +46,10 @@
           <i class="fab fa-instagram"></i>
           <i class="fab fa-youtube"></i>
           <i class="fab fa-spotify"></i>
+          <div class="mt-2">
+            <a href="/band/{{band._id}}/edit" class="btn btn-primary">Editar Banda</a>
+            <a href="/user/edit" class="btn btn-danger">Borrar Banda</a>
+          </div>
         </div>
         <div class="col-md-6 ms-auto">
           <h2>Donec efficitur leo non imperdiet auctor. Vivamus accumsan erat id
@@ -53,4 +62,8 @@
     </div>
   </div>
 </div>
-
+{{else}}
+<p>Aun no tienes una banda 
+<a class="nav-link" href="/band/create-band">Crea tu Banda</a>
+</p>
+{{/if}}

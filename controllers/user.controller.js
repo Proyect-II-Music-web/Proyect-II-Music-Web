@@ -66,6 +66,7 @@ module.exports.doUserLogin = (req, res, next) => {
 module.exports.userProfile = (req, res, next) => {
   Band.findOne({owner: req.currentUser._id})
     .then((band) => {
+      console.log(req.currentUser);
       res.render("user/profile", { band });
     })
     .catch((err) => next(err))
@@ -106,6 +107,9 @@ module.exports.editUserProfile = (req, res, next) => {
 };
 
 module.exports.updateUserProfile = (req, res, next) => {
+  if (req.file) {
+    req.body.avatar = req.file.path
+  }
   User.findByIdAndUpdate(req.currentUser._id, req.body, { new: true })
   .then(() => {
     res.redirect("/user/profile")
