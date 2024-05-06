@@ -12,10 +12,12 @@
           <p class="card-text">Tags: {{post.tags}}</p>
           <p class="card-text">Fecha: {{post.date}}</p>
           <p class="card-text">Lugar: {{post.place}}</p>
-          <p>bandas: {{#each post.bands as |band|}}
-            {{band.name}}
+          <p>Bandas:
+            {{#each post.bands as |band|}}
+            <a href="/band/{{band._id}}">{{band.name}}</a>
+            {{#unless @last}}, {{/unless}}
             {{/each}}
-          </p>
+            </p>
           {{#ifRoleIsUser currentUser}}
             {{#ifPostIsNotClosed post.isClosed}}
                 <form action="/promoter/post/{{post._id}}/application" method="POST">

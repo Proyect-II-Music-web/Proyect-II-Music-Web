@@ -1,14 +1,15 @@
 <div class="container">
-
     {{#ifRoleIsUser currentUser}}
-
-        <p>Nombre: {{currentUser.name}}</p>
-        <p>Banda: {{currentUser.band.name}}</p>
-        <div>
-            <p>Avatar:</p>
-            <img src="{{currentUser.band.avatar}}" width="100" alt="img">
+        <div class="text-center mb-4">
+            <img src="{{currentUser.band.avatar}}" class="rounded-circle border-0" alt="Avatar" style="width: 100px;">
         </div>
-
-        <a href="/user/edit" class="btn btn-primary">Editar</a>
+        <div class="text-center">
+            <p class="mb-2">{{currentUser.name}}</p>
+            <p class="mb-2">Banda: {{currentUser.band.name}}</p>
+            <p class="mb-2">Email: {{currentUser.email}}</p>
+        </div>
+        <div class="text-center">
+            <a href="/user/edit" class="btn btn-primary">Editar Perfil</a>
+        </div>
     {{/ifRoleIsUser}}
 </div>
