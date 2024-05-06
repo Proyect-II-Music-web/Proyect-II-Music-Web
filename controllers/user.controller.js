@@ -64,7 +64,11 @@ module.exports.doUserLogin = (req, res, next) => {
 };
 
 module.exports.userProfile = (req, res, next) => {
-  res.render("user/profile");
+  Band.findOne({owner: req.currentUser._id})
+    .then((band) => {
+      res.render("user/profile", { band });
+    })
+    .catch((err) => next(err))
 };
 module.exports.doAssist = (req, res, next) => {
   const { postId } = req.params;
