@@ -33,7 +33,26 @@ module.exports.editBand = (req, res, next) => {
   const { bandId } = req.params;
   Band.findById(bandId)
     .then((band) => {
-      res.render("band/create-band", { band });
+      res.render("band/edit", { band });
     })
     .catch((err) => next(err))
+};
+module.exports.uploadBand = (req, res, next) => {
+  const { bandId } = req.params;
+  if (req.file) {
+    req.body.avatar = req.file.path
+  }
+  Band.findByIdAndUpdate(bandId, req.body, { new: true })
+  .then(() => {
+    res.redirect("/user/profile")
+  })
+  .catch((err) => next(err))
+};
+module.exports.deleteBand = (req, res, next) => {
+  const { bandId } = req.params;
+  Band.findByIdAndDelete(bandId)
+    .then(() => {
+      res.redirect("/user/profile");
+    })
+    .catch((error) => next(error));
 };
