@@ -18,52 +18,54 @@
   {{/ifRoleIsUser}}
 </div>
 {{#if band}}
-<div class="container mt-5 mb-4">
-  <div class="card">
-    <div class="card-header bg-dark text-light">
-      <h1 class="card-title">{{band.name}}</h1>
-    </div>
-    <div class="card-body">
-      <div class="row">
-        <div class="col-md-4">
-          <img
-            src="https://images.prismic.io/sofarlive/0f8981b7-3dda-4be6-81b1-c5ace4399add_Enter_Basic_Info.jpg?auto=compress,format&rect=69,0,661,533&w=556&h=448"
-            alt="Band Avatar"
-            class="band-avatar mb-3"
-          />
-          <p>
-            <strong>Géneros musicales:</strong>
-            {{#each band.tags}}
-              <span class="tag">{{this}}</span>
-            {{/each}}
-          </p>
-          <p>
-            <strong>Miembros:</strong><br />
-            {{#each band.members}}
-              <span class="member">{{this}}</span><br />
-            {{/each}}
-          </p>
-          <i class="fab fa-instagram"></i>
-          <i class="fab fa-youtube"></i>
-          <i class="fab fa-spotify"></i>
-          <div class="mt-2">
-            <a href="/band/{{band._id}}/edit" class="btn btn-primary">Editar Banda</a>
-            <a href="/user/edit" class="btn btn-danger">Borrar Banda</a>
+  <div class="container mt-5 mb-4">
+    <div class="card">
+      <div class="card-header bg-dark text-light">
+        <h1 class="card-title">{{band.name}}</h1>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4">
+            <img src="{{band.avatar}}" alt="Band Avatar" class="mb-3" />
+            <p>
+              <strong>Géneros musicales:</strong>
+              {{#each band.tags}}
+                <span class="tag">{{this}}</span>
+              {{/each}}
+            </p>
+            <p>
+              <strong>Miembros:</strong><br />
+              {{#each band.members}}
+                <span class="member">{{this}}</span><br />
+              {{/each}}
+            </p>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-youtube"></i>
+            <i class="fab fa-spotify"></i>
+            <div class="mt-2 d-flex">
+              <a href="/band/{{band._id}}/edit" class="btn btn-primary">Editar
+                Banda</a>
+              <form
+                action="/band/{{band._id}}/delete"
+                method="POST"
+              >
+                <button type="submit" class="btn btn-danger ms-3">Borrar Banda</button>
+              </form>
+            </div>
+          </div>
+          <div class="col-md-6 ms-auto">
+            <h2>{{band.cathFrase}}</h2>
+            <p class="lead">{{band.description}}</p>
+            {{{band.linkVideo}}}
           </div>
         </div>
-        <div class="col-md-6 ms-auto">
-          <h2>Donec efficitur leo non imperdiet auctor. Vivamus accumsan erat id
-            tincidunt fringilla. Nam turpis elit</h2>
-          <p class="lead">{{band.description}}</p>
-        </div>
+      </div>
+      <div class="card-footer bg-dark text-light">
       </div>
     </div>
-    <div class="card-footer bg-dark text-light">
-    </div>
   </div>
-</div>
 {{else}}
-<p>Aun no tienes una banda 
-<a class="nav-link" href="/band/create-band">Crea tu Banda</a>
-</p>
+  <p>Aun no tienes una banda
+    <a class="nav-link" href="/band/create-band">Crea tu Banda</a>
+  </p>
 {{/if}}

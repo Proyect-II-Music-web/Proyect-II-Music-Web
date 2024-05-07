@@ -34,7 +34,7 @@ const bandSchema = mongoose.Schema({
     avatar: {
         type: String
     },
-    video: {
+    linkVideo: {
         type: String // Aquí almacenaremos el enlace del video
     }
    

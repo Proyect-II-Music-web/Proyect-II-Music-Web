@@ -1,7 +1,11 @@
 <div class="container mt-5 mb-5">
   <div class="col-md-8 m-auto">
-    <h1>Crea tu Banda</h1>
-    <form action="/band/create-band" method="POST" enctype="multipart/form-data">
+
+    <form
+      action="/band/{{band._id}}/edit"
+      method="POST"
+      enctype="multipart/form-data"
+    >
       <div class="mb-3">
         <label for="name" class="form-label">Nombre</label>
         <input
@@ -10,7 +14,6 @@
           id="name"
           name="name"
           value="{{band.name}}"
-          required
         />
       </div>
       <div class="mb-3">
@@ -20,51 +23,42 @@
           class="form-control"
           id="cathFrase"
           name="cathFrase"
+          rows="3"
           value="{{band.cathFrase}}"
-          required
-        >
+        />
       </div>
       <div class="mb-3">
         <label for="description" class="form-label">Descripción</label>
         <textarea
-          class="form-control"
+          class="form-control pb-5"
           id="description"
           name="description"
-          rows="3"
-          value="{{band.description}}"
-          required
-        ></textarea>
+          rows="6"
+        >{{band.description}}</textarea>
       </div>
       <div class="mb-3">
-        <label for="linkVideo" class="form-label">Añade la url de tu video</label>
+        <label for="linkVideo" class="form-label">Añade el codigo deinsersión de tu video</label>
         <input
           type="text"
           class="form-control"
           id="linkVideo"
           name="linkVideo"
           value="{{band.linkVideo}}"
-          required
-        >
+        />
       </div>
       <div class="mb-3">
-        <label for="tags" class="form-label">Géneros musicales (separadas por comas)</label>
+        <label for="tags" class="form-label">Etiquetas (separadas por comas)</label>
         <input
           type="text"
           class="form-control"
           id="tags"
           name="tags"
           value="{{band.tags}}"
-          required
         />
       </div>
       <div class="mb-3">
-        <label for="avatar" class="form-label">Foto de tu banda</label>
-        <input
-          type="file"
-          class="form-control"
-          id="avatar"
-          name="avatar"
-        />
+        <label for="avatar" class="form-label">Tu foto</label>
+        <input type="file" class="form-control" id="avatar" name="avatar" />
       </div>
       <div class="mb-3">
         <label for="members" class="form-label">Miembros (separados por comas)</label>
@@ -74,10 +68,9 @@
           id="members"
           name="members"
           value="{{band.members}}"
-          required
         />
       </div>
-      <button type="submit" class="btn btn-primary">Crear Banda</button>
+      <button type="submit" class="btn btn-primary">Guarda los cambios</button>
     </form>
   </div>
 </div>
