@@ -4,11 +4,12 @@
       <div class="card mb-3">
         <!-- Título del evento -->
         <h2 class="card-title text-center">{{#if post.isClosed}}Evento para público{{else}}{{post.title}}{{/if}}</h2>
+        <h2>{{post.title}}</h2>
         <div class="row">
           <!-- Columna para el avatar del evento -->
           <div class="col-md-4">
             <div class="card-body">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNcpW3o3DxXJozyYe32u3ec5fcCDc-pEhoiQ&usqp=CAU" class="card-img" alt="Avatar del evento" style="width: 400px; height: 350px;">
+              <img src="{{post.avatar}}" class="card-img" alt="Avatar del evento" style="width: 400px; height: 350px;">
             </div>
           </div>
           <!-- Columna para los datos del evento -->
@@ -24,6 +25,17 @@
                 {{#unless @last}}, {{/unless}}
                 {{/each}}
               </p>
+
+               <div class="mt-2 d-flex">
+              <a href="/promoter/{{post._id}}/edit-post" class="btn btn-primary">Editar
+                Evento</a>
+              <form
+                action="/promoter/{{post._id}}/delete"
+                method="POST"
+              >
+                <button type="submit" class="btn btn-danger ms-3">Borrar Evento</button>
+              </form>
+            </div>
               <!-- Botones de acción -->
               {{#ifRoleIsUser currentUser}}
                 {{#ifPostIsNotClosed post.isClosed}}

@@ -48,6 +48,13 @@ const postSchema = mongoose.Schema(
             type: [mongoose.SchemaTypes.ObjectId],
             ref: "User"
         },
+        price: {
+            type: Number,
+            min: 0
+        },
+        avatar: {
+            type: String
+        },
 
     },
     {
