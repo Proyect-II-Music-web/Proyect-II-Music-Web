@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Post = require("../models/Post.model");
 const Application = require("../models/Application.model");
-const { populate } = require("dotenv");
+const {formatDate } = require("../utils/date");
 
 module.exports.promoterProfile = (req, res, next) => {
   res.render("promoter/profile");
@@ -67,7 +67,8 @@ module.exports.postDetail = (req, res, next) => {
         .populate("bands")
         .then((post) => {
           if (!post) {
-            next(createError(404, "No tienes eventos"));
+            //next(createError(404, "No tienes eventos"));
+            res.render("promoter/post-detail");
           }
           if (req.currentUser) {
             return Application.findOne({
@@ -103,4 +104,37 @@ module.exports.closePostEvent = (req, res, next) => {
       res.redirect("/promoter/list-posts");
     })
     .catch((err) => next(err));
+};
+module.exports.editPost = (req, res, next) => {
+  const {
+    postId
+  } = req.params;
+
+  Post.findById(postId)
+  .then((post) => {
+    res.render("promoter/edit-post", {post, date: formatDate(new Date(post.date))}, );
+  })
+  .catch(err => next(err))
+};
+
+module.exports.updatePost = (req, res, next) => {
+  const { postId } = req.params;
+  if (req.file) {
+    req.body.avatar = req.file.path
+  }
+  Post.findByIdAndUpdate(postId, req.body, { new: true })
+  .then((post) => {
+    console.log(post)
+    res.redirect(`/promoter/post/${postId}`)
+  })
+  .catch((err) => next(err))
+};
+
+module.exports.deletePost = (req, res, next) => {
+  const { postId } = req.params;
+  Post.findByIdAndDelete(postId)
+    .then(() => {
+      res.redirect("/promoter/list-posts");
+    })
+    .catch((error) => next(error));
 };

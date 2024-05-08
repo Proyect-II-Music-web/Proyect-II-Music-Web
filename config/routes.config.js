@@ -28,6 +28,9 @@ const {
     postDetail,
     addBand,
     closePostEvent,
+    editPost,
+    updatePost,
+    deletePost,
 } = require("../controllers/promoter.controller");
 const {
     doApplicate
@@ -71,11 +74,14 @@ router.post("/band/:bandId/delete", isAuthenticated, deleteBand)
 //Promoter
 router.get("/promoter/profile",isAuthenticated, isPromoter,  promoterProfile);
 router.get("/promoter/post-event", isAuthenticated, isPromoter, createPost);
-router.post("/promoter/post-event", isAuthenticated, isPromoter, doCreatePost)
+router.post("/promoter/post-event", isAuthenticated, isPromoter, doCreatePost);
+router.get("/promoter/:postId/edit-post", isAuthenticated, isPromoter, editPost)
+router.post("/promoter/:postId/edit-post", isAuthenticated, isPromoter, upload.single("avatar"), updatePost)
 router.get("/promoter/list-posts",isAuthenticated, getPosts);
 router.get("/promoter/post/:postId", isAuthenticated, postDetail);
 router.post("/promoter/post/:postId/add-band/:bandId/:appId",isAuthenticated, isPromoter, addBand);
 router.post("/promoter/post/:postId/close-post", closePostEvent)
+router.post("/promoter/:postId/delete", isAuthenticated, isPromoter, deletePost)
 
 //Solicitud
 router.post("/promoter/post/:postId/application", doApplicate);

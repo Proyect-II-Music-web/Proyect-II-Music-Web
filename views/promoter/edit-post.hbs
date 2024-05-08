@@ -1,0 +1,95 @@
+<div class="container mt-5">
+  <div class="col-md-8 m-auto">
+    <!-- Aquí se define el ancho del formulario -->
+    <h1>Edita tu Evento</h1>
+    <form action="/promoter/{{post._id}}/edit-post" method="POST" enctype="multipart/form-data">
+      <div class="form-group mb-3">
+        <label for="title">Nombre del Evento:</label>
+        <input
+          value="{{post.title}}"
+          type="text"
+          class="form-control"
+          id="title"
+          name="title"
+        />
+
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="description">Descripción:</label>
+        <textarea
+          class="form-control"
+          id="description"
+          name="description"
+          rows="3"
+        >{{post.description}}</textarea>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="tags">Generos (separar por comas):</label>
+        <input
+          value="{{post.tags}}"
+          type="text"
+          class="form-control"
+          id="tags"
+          name="tags"
+        />
+
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="date">Fecha:</label>
+        <input
+          value="{{date}}"
+          type="date"
+          class="form-control"
+          id="date"
+          name="date"
+        />
+
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="place">Lugar:</label>
+        <input
+          value="{{post.place}}"
+          type="text"
+          class="form-control"
+          id="place"
+          name="place"
+        />
+
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="maxForum">Máximo Foro:</label>
+        <input
+          value="{{post.maxForum}}"
+          type="number"
+          class="form-control"
+          id="maxForum"
+          name="maxForum"
+        />
+
+      </div>
+      <div class="form-group mb-3">
+        <label for="price">Precio:</label>
+        <input
+          value="{{post.price}}"
+          type="number"
+          class="form-control"
+          id="price"
+          name="price"
+        />
+
+      </div>
+
+      <div class="mb-3">
+        <label for="avatar" class="form-label">Foto de tu Evento</label>
+        <input type="file" class="form-control" id="avatar" name="avatar" />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Editar</button>
+    </form>
+  </div>
+</div>
