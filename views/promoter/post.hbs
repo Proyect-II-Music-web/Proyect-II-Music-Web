@@ -3,7 +3,7 @@
         <h1>Crea un Nuevo Evento</h1>
         <form action="/promoter/post-event" method="POST">
             <div class="form-group mb-3">
-                <label for="title">Title:</label>
+                <label for="title">Nombre del Evento:</label>
                 <input value="{{values.title}}" type="text" class="form-control {{#if errors.title}}is-invalid{{/if}}" id="title" name="title">
                 {{#if errors.title}}
                 <div class="invalid-feedback">
@@ -13,7 +13,7 @@
             </div>
 
             <div class="form-group mb-3">
-                <label for="description">Description:</label>
+                <label for="description">Descripción:</label>
                 <textarea class="form-control {{#if errors.description}}is-invalid{{/if}}" id="description" name="description" rows="3">{{values.description}}</textarea>
                 {{#if errors.description}}
                 <div class="invalid-feedback">
@@ -23,7 +23,7 @@
             </div>
 
             <div class="form-group mb-3">
-                <label for="tags">Tags (comma-separated):</label>
+                <label for="tags">Generos (separar por comas):</label>
                 <input value="{{values.tags}}" type="text" class="form-control {{#if errors.tags}}is-invalid{{/if}}" id="tags" name="tags">
                 {{#if errors.tags}}
                 <div class="invalid-feedback">
@@ -33,7 +33,7 @@
             </div>
 
             <div class="form-group mb-3">
-                <label for="date">Date:</label>
+                <label for="date">Fecha:</label>
                 <input value="{{values.date}}" type="date" class="form-control {{#if errors.date}}is-invalid{{/if}}" id="date" name="date">
                 {{#if errors.date}}
                 <div class="invalid-feedback">
@@ -43,7 +43,7 @@
             </div>
 
             <div class="form-group mb-3">
-                <label for="place">Place:</label>
+                <label for="place">Lugar:</label>
                 <input value="{{values.place}}" type="text" class="form-control {{#if errors.place}}is-invalid{{/if}}" id="place" name="place">
                 {{#if errors.place}}
                 <div class="invalid-feedback">
