@@ -1,4 +1,5 @@
 const router= require("express").Router();
+const { getHome } = require("../controllers/misc.controller")
 const { 
     userRegister,
     doUserRegister,
@@ -48,7 +49,7 @@ const {
 
 const upload = require("./storage.config");
 
-router.get("/", (req, res, next) => res.render("home"));
+router.get("/", getHome);
 
 //User
 router.get("/user/register", isNoAuthenticated, userRegister);
