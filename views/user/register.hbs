@@ -4,7 +4,7 @@
       <div class="container w-50 m-auto">
         <h1 class="mb-1 text-center">Regístrate</h1>
           <form action="/user/register" method="POST">
-            <label for="name">Name
+            <label for="name">Nombre
               <span class="required">*</span></label>
             <input
               value="{{values.name}}"
@@ -32,7 +32,7 @@
                 {{errors.email}}
               </div>
             {{/if}}
-            <label for="password">Password
+            <label for="password">Contraseña
               <span class="required">*</span></label>
             <input
               type="password"
@@ -45,27 +45,26 @@
                 {{errors.password}}
               </div>
             {{/if}}
-            <label for="plot">Choose the Cast</label>
+            <label for="plot">Selecciona si seras Usuario o Promotor</label>
             <select
               name="role"
               class="form-select"
               id="role"
               aria-label="Floating label select example"
             >
-              <option value="user">User</option>
-              <option value="promoter">Promoter</option>
+              <option value="user">Usuario</option>
+              <option value="promoter">Promotor</option>
             </select>
             <button class="btn btn-primary w-100 py-2 mb-4 mt-3">
               Regístrate
             </button>
           </form>
 
-        <p class="text-center small mb-2">By clicking "Sign
-          up" you agree to our
-          <a href="https://themes.getbootstrap.com/terms">Terms of Service</a>.</p>
-        <p class="text-center small mb-2">Already have an
-          account?
-          <a href="https://themes.getbootstrap.com/signin/">Inicia sesión</a></p>
+        <p class="text-center small mb-2"> Cuando te registras aceptas nuestros
+
+          <a href="https://themes.getbootstrap.com/terms">Terminos y condiciones</a>.</p>
+        <p class="text-center small mb-2"> ¿Ya tienes una Cuenta? 
+          <a href="/user/login">Inicia sesión</a></p>
       </div>
     </div>
   </div>
