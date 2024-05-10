@@ -25,17 +25,18 @@
                 {{#unless @last}}, {{/unless}}
                 {{/each}}
               </p>
-
-               <div class="mt-2 d-flex">
-              <a href="/promoter/{{post._id}}/edit-post" class="btn btn-primary">Editar
-                Evento</a>
-              <form
-                action="/promoter/{{post._id}}/delete"
-                method="POST"
-              >
-                <button type="submit" class="btn btn-danger ms-3">Borrar Evento</button>
-              </form>
-            </div>
+            {{#ifRoleIsPromoter currentUser}}
+              <div class="mt-2 d-flex">
+                <a href="/promoter/{{post._id}}/edit-post" class="btn btn-primary">Editar
+                  Evento</a>
+                <form
+                  action="/promoter/{{post._id}}/delete"
+                  method="POST"
+                >
+                  <button type="submit" class="btn btn-danger ms-3">Borrar Evento</button>
+                </form>
+              </div>
+            {{/ifRoleIsPromoter}}
               <!-- Botones de acción -->
               {{#ifRoleIsUser currentUser}}
                 {{#ifPostIsNotClosed post.isClosed}}
