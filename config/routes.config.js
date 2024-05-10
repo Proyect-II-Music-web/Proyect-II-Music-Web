@@ -49,7 +49,7 @@ const {
 
 const upload = require("./storage.config");
 
-router.get("/", getHome);
+router.get("/",isNoAuthenticated, getHome);
 
 //User
 router.get("/user/register", isNoAuthenticated, userRegister);
