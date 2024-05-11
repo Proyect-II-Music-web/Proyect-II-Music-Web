@@ -6,10 +6,12 @@
       "date": { "$date": "2024-06-08T00:00:00.000Z" },
       "place": "Teatro Municipal",
       "isClosed": false,
-      "owner": { "$oid": "6635f178983dcc97b92262f9" },
+      "owner": { "$oid": "663f36c0ded3ccd6590c3bd5" },
       "bands": [],
       "maxForum": 5,
       "assistans": [],
+      "price": 15,
+      "avatar": "https://res.cloudinary.com/dgtbm9skf/image/upload/v1715421798/ironhack/web-events-music/koikpiadkurcewxnscvr.avif",
       "__v": 0
     },
     {
@@ -19,10 +21,12 @@
       "date": { "$date": "2024-06-15T00:00:00.000Z" },
       "place": "Parque Central",
       "isClosed": false,
-      "owner": { "$oid": "6635f178983dcc97b92262f9" },
+      "owner": { "$oid": "663f36c0ded3ccd6590c3bd5" },
       "bands": [],
       "maxForum": 5,
       "assistans": [],
+      "price": 15,
+      "avatar": "https://res.cloudinary.com/dgtbm9skf/image/upload/v1715421798/ironhack/web-events-music/koikpiadkurcewxnscvr.avif",
       "__v": 0
     },
     {
@@ -32,10 +36,12 @@
       "date": { "$date": "2024-06-22T00:00:00.000Z" },
       "place": "Plaza del Barrio",
       "isClosed": false,
-      "owner": { "$oid": "6635f178983dcc97b92262f9" },
+      "owner": { "$oid": "663f36c0ded3ccd6590c3bd5" },
       "bands": [],
       "maxForum": 5,
       "assistans": [],
+      "price": 15,
+      "avatar": "https://res.cloudinary.com/dgtbm9skf/image/upload/v1715421798/ironhack/web-events-music/koikpiadkurcewxnscvr.avif",
       "__v": 0
     },
     {
@@ -45,10 +51,12 @@
       "date": { "$date": "2024-06-29T00:00:00.000Z" },
       "place": "Café Bohemio",
       "isClosed": false,
-      "owner": { "$oid": "6635f178983dcc97b92262f9" },
+      "owner": { "$oid": "663f36c0ded3ccd6590c3bd5" },
       "bands": [],
       "maxForum": 5,
       "assistans": [],
+      "price": 15,
+      "avatar": "https://res.cloudinary.com/dgtbm9skf/image/upload/v1715421798/ironhack/web-events-music/koikpiadkurcewxnscvr.avif",
       "__v": 0
     },
     {
@@ -58,10 +66,12 @@
       "date": { "$date": "2024-07-06T00:00:00.000Z" },
       "place": "Playa del Sol",
       "isClosed": false,
-      "owner": { "$oid": "6635f178983dcc97b92262f9" },
+      "owner": { "$oid": "663f36c0ded3ccd6590c3bd5" },
       "bands": [],
       "maxForum": 5,
       "assistans": [],
+      "price": 15,
+      "avatar": "https://res.cloudinary.com/dgtbm9skf/image/upload/v1715421798/ironhack/web-events-music/koikpiadkurcewxnscvr.avif",
       "__v": 0
     },
     {
@@ -71,10 +81,12 @@
       "date": { "$date": "2024-07-13T00:00:00.000Z" },
       "place": "Teatro de la Ciudad",
       "isClosed": false,
-      "owner": { "$oid": "6635f178983dcc97b92262f9" },
+      "owner": { "$oid": "663f36c0ded3ccd6590c3bd5" },
       "bands": [],
       "maxForum": 5,
       "assistans": [],
+      "price": 15,
+      "avatar": "https://res.cloudinary.com/dgtbm9skf/image/upload/v1715421798/ironhack/web-events-music/koikpiadkurcewxnscvr.avif",
       "__v": 0
     },
     {
@@ -84,10 +96,12 @@
       "date": { "$date": "2024-07-20T00:00:00.000Z" },
       "place": "Bar UnderGround",
       "isClosed": false,
-      "owner": { "$oid": "6635f178983dcc97b92262f9" },
+      "owner": { "$oid": "663f36c0ded3ccd6590c3bd5" },
       "bands": [],
       "maxForum": 5,
       "assistans": [],
+      "price": 15,
+      "avatar": "https://res.cloudinary.com/dgtbm9skf/image/upload/v1715421798/ironhack/web-events-music/koikpiadkurcewxnscvr.avif",
       "__v": 0
     },
     {
@@ -97,10 +111,12 @@
       "date": { "$date": "2024-07-27T00:00:00.000Z" },
       "place": "Casa Andaluza",
       "isClosed": false,
-      "owner": { "$oid": "6635f178983dcc97b92262f9" },
+      "owner": { "$oid": "663f36c0ded3ccd6590c3bd5" },
       "bands": [],
       "maxForum": 5,
       "assistans": [],
+      "price": 15,
+      "avatar": "https://res.cloudinary.com/dgtbm9skf/image/upload/v1715421798/ironhack/web-events-music/koikpiadkurcewxnscvr.avif",
       "__v": 0
     },
     {
@@ -110,10 +126,12 @@
       "date": { "$date": "2024-08-03T00:00:00.000Z" },
       "place": "Club Subterráneo",
       "isClosed": false,
-      "owner": { "$oid": "6635f178983dcc97b92262f9" },
+      "owner": { "$oid": "663f36c0ded3ccd6590c3bd5" },
       "bands": [],
       "maxForum": 5,
       "assistans": [],
+      "price": 15,
+      "avatar": "https://res.cloudinary.com/dgtbm9skf/image/upload/v1715421798/ironhack/web-events-music/koikpiadkurcewxnscvr.avif",
       "__v": 0
     },
     {
@@ -123,10 +141,12 @@
       "date": { "$date": "2024-08-10T00:00:00.000Z" },
       "place": "Almacén 54",
       "isClosed": false,
-      "owner": { "$oid": "6635f178983dcc97b92262f9" },
+      "owner": { "$oid": "663f36c0ded3ccd6590c3bd5" },
       "bands": [],
       "maxForum": 5,
       "assistans": [],
+      "price": 15,
+      "avatar": "https://res.cloudinary.com/dgtbm9skf/image/upload/v1715421798/ironhack/web-events-music/koikpiadkurcewxnscvr.avif",
       "__v": 0
     }
   ]

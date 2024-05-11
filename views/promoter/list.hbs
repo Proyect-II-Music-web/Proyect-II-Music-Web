@@ -4,7 +4,7 @@
       <h5 class="card-title">{{ post.title }}</h5>
       
       
-      <p class="card-text">Fecha: {{ post.date }}</p>
+      <p class="card-text">Fecha: {{formatDate post.date }}</p>
       <p class="card-text">Lugar: {{ post.place }}</p>
       <a href="/promoter/post/{{post._id}}" class="btn" style="background-color: #26c9cc;">Ver más</a>
     </div>

@@ -52,6 +52,9 @@ const postSchema = mongoose.Schema(
             type: Number,
             min: 0
         },
+        hour: {
+            type: String
+        },
         avatar: {
             type: String
         },

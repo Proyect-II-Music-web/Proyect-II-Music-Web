@@ -34,9 +34,11 @@
 
         <div class="collapse navbar-collapse mx-3" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto">
+            {{#ifNoCurrentUser currentUser}}
             <li class="nav-item active">
               <a class="nav-link" href="/">Home</a>
             </li>
+            {{/ifNoCurrentUser}}
             {{#ifRoleIsUser currentUser}}
               <li class="nav-item">
                 <a class="nav-link" href="/band/create-band">Crea tu Banda</a>

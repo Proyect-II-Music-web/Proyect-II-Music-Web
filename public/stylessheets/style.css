@@ -50,6 +50,13 @@ body {
     top: 100px;
     right: 200px;
 }
+.size-avatar{
+    max-width: 100px;
+    height: auto;
+}
+.img-band-size{
+    width: 100%;
+}
 
 /*CLASES COPIADAS*/
 .card .card-header.card-header-image .colored-shadow {

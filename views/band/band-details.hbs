@@ -1,59 +1,46 @@
 <div class="container mt-5 mb-4">
-  <div class="card">
-    <div class="card-header bg-dark text-light">
-      <h1 class="card-title">{{band.name}}</h1>
-    </div>
-    <div class="card-body">
-      <div class="row">
-        <div class="col-md-4">
-            <div class="card-body">
-              <img src="{{band.avatar}}" class="card-img" alt="Avatar de la Banda" style="width: 400px; height: 350px;">
+      <div class="card">
+        <div class="card-header bg-dark ">
+          <h1 class="card-title text-light text-center">{{band.name}}</h1>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <img src="{{band.avatar}}" alt="Band Avatar" class="mb-3 img-band-size" />
+              <p>
+                <strong>Géneros musicales:</strong>
+                {{#each band.tags}}
+                  <span class="tag">{{this}}</span>
+                {{/each}}
+              </p>
+              <p>
+                <strong>Miembros:</strong><br />
+                {{#each band.members}}
+                  <span class="member">{{this}}</span><br />
+                {{/each}}
+              </p>
+              <i class="fab fa-instagram"></i>
+              <i class="fab fa-youtube"></i>
+              <i class="fab fa-spotify"></i>
+              {{#ifRoleIsUser currentUser}}
+              <div class="mt-2 d-flex">
+                <form action="/band/{{band._id}}/edit" method="GET">
+                  <button type="submit" class="btn btn-primary">Editar Banda</button>
+                </form>
+                <form action="/band/{{band._id}}/delete" method="POST">
+                  <button type="submit" class="btn btn-danger ms-3">Borrar Banda</button>
+                </form>
+              </div>
+              {{/ifRoleIsUser}}
+            </div>
+            <div class="col-md-6 ms-auto">
+              <h2>{{band.cathFrase}}</h2>
+              <p class="lead">{{band.description}}</p>
+              {{{band.linkVideo}}}
             </div>
           </div>
-
-          
-          <p>
-            <strong>Géneros musicales:</strong>
-            {{#each band.tags}}
-              <span class="tag">{{this}}</span>
-            {{/each}}
-          </p>
-          <p>
-            <strong>Miembros:</strong><br />
-            {{#each band.members}}
-              <span class="member">{{this}}</span><br />
-            {{/each}}
-          </p>
-           <p>
-            <strong>Frase</strong>
-            {{#each band.cathFrase}}
-              <span class="tag">{{this}}</span>
-            {{/each}}
-          </p>
-          <p>
-            <strong>Descripción</strong>
-            {{#each band.description}}
-              <span class="tag">{{this}}</span>
-            {{/each}}
-          </p>
-          <p>
-            <strong>Video</strong>
-            {{#each band.linkVideo}}
-              <span class="tag">{{this}}</span>
-            {{/each}}
-          </p>
-          <i class="fab fa-instagram"></i>
-          <i class="fab fa-youtube"></i>
-          <i class="fab fa-spotify"></i>
         </div>
-        <div class="col-md-6 ms-auto">
-          <h2>Donec efficitur leo non imperdiet auctor. Vivamus accumsan erat id
-            tincidunt fringilla. Nam turpis elit</h2>
-          <p class="lead">{{band.description}}</p>
+        <div class="card-footer bg-dark text-light">
         </div>
       </div>
     </div>
-    <div class="card-footer bg-dark text-light">
-    </div>
-  </div>
-</div>

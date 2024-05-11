@@ -3,9 +3,8 @@
     <div class="text-center mb-4">
       <img
         src="{{currentUser.avatar}}"
-        class="rounded-circle border-0"
+        class="rounded-circle border-0 size-avatar"
         alt="Avatar"
-        style="width: 100px;"
       />
     </div>
     <div class="text-center">
@@ -15,13 +14,12 @@
     <div class="text-center">
       <a href="/user/edit" class="btn btn-primary">Editar Perfil</a>
     </div>
-    {{else}}
-      <div class="text-center mb-4">
+  {{else}}
+    <div class="text-center mb-4">
       <img
         src="{{currentUser.avatar}}"
-        class="rounded-circle border-0"
+        class="rounded-circle border-0 size-avatar"
         alt="Avatar"
-        style="width: 100px;"
       />
     </div>
     <div class="text-center">
@@ -34,56 +32,54 @@
   {{/ifRoleIsUser}}
 </div>
 {{#ifRoleIsUser currentUser}}
-{{#if band}}
-  <div class="container mt-5 mb-4">
-    <div class="card">
-      <div class="card-header bg-dark text-light">
-        <h1 class="card-title">{{band.name}}</h1>
-      </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-4">
-            <img src="{{band.avatar}}" alt="Band Avatar" class="mb-3" />
-            <p>
-              <strong>Géneros musicales:</strong>
-              {{#each band.tags}}
-                <span class="tag">{{this}}</span>
-              {{/each}}
-            </p>
-            <p>
-              <strong>Miembros:</strong><br />
-              {{#each band.members}}
-                <span class="member">{{this}}</span><br />
-              {{/each}}
-            </p>
-            <i class="fab fa-instagram"></i>
-            <i class="fab fa-youtube"></i>
-            <i class="fab fa-spotify"></i>
-            <div class="mt-2 d-flex">
-              <a href="/band/{{band._id}}/edit" class="btn btn-primary">Editar
-                Banda</a>
-              <form
-                action="/band/{{band._id}}/delete"
-                method="POST"
-              >
-                <button type="submit" class="btn btn-danger ms-3">Borrar Banda</button>
-              </form>
+  {{#if band}}
+    <div class="container mt-5 mb-4">
+      <div class="card">
+        <div class="card-header bg-dark ">
+          <h1 class="card-title text-light text-center">{{band.name}}</h1>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <img src="{{band.avatar}}" alt="Band Avatar" class="mb-3 img-band-size" />
+              <p>
+                <strong>Géneros musicales:</strong>
+                {{#each band.tags}}
+                  <span class="tag">{{this}}</span>
+                {{/each}}
+              </p>
+              <p>
+                <strong>Miembros:</strong><br />
+                {{#each band.members}}
+                  <span class="member">{{this}}</span><br />
+                {{/each}}
+              </p>
+              <i class="fab fa-instagram"></i>
+              <i class="fab fa-youtube"></i>
+              <i class="fab fa-spotify"></i>
+              <div class="mt-2 d-flex">
+                <form action="/band/{{band._id}}/edit" method="GET">
+                  <button type="submit" class="btn btn-primary">Editar Banda</button>
+                </form>
+                <form action="/band/{{band._id}}/delete" method="POST">
+                  <button type="submit" class="btn btn-danger ms-3">Borrar Banda</button>
+                </form>
+              </div>
+            </div>
+            <div class="col-md-6 ms-auto">
+              <h2>{{band.cathFrase}}</h2>
+              <p class="lead">{{band.description}}</p>
+              {{{band.linkVideo}}}
             </div>
           </div>
-          <div class="col-md-6 ms-auto">
-            <h2>{{band.cathFrase}}</h2>
-            <p class="lead">{{band.description}}</p>
-            {{{band.linkVideo}}}
-          </div>
+        </div>
+        <div class="card-footer bg-dark text-light">
         </div>
       </div>
-      <div class="card-footer bg-dark text-light">
-      </div>
     </div>
-  </div>
-{{else}}
-  <p>Aun no tienes una banda
-    <a class="nav-link" href="/band/create-band">Crea tu Banda</a>
-  </p>
-{{/if}}
+  {{else}}
+    <p>Aun no tienes una banda
+      <a class="nav-link" href="/band/create-band">Crea tu Banda</a>
+    </p>
+  {{/if}}
 {{/ifRoleIsUser}}

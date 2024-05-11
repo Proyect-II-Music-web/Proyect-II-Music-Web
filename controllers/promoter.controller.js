@@ -11,6 +11,9 @@ module.exports.createPost = (req, res, next) => {
 };
 module.exports.doCreatePost = (req, res, next) => {
   req.body.owner = req.currentUser.id;
+  if (req.body.tags) {
+    req.body.tags = req.body.tags.split(',')
+  }
   const renderWithErrors = (errors, values) => {
     res.render("promoter/post", { errors, values });
   };
@@ -35,11 +38,12 @@ module.exports.getPosts = (req, res, next) => {
     userIsPromoter ? { owner: req.currentUser.id } : { isClosed: false }
   )
     .then((posts) => {
-      res.render("promoter/list", { posts });
+      res.render("promoter/list", { posts});
     })
     .catch((err) => next(err));
 };
 module.exports.postDetail = (req, res, next) => {
+  const { postId } = req.params;
   //limitar la busqueda a 3  post
   const {page = 0} = req.query
 
@@ -57,10 +61,11 @@ module.exports.postDetail = (req, res, next) => {
       $gte: currentDate,
       $lte: oneMonthLater,
     },
+    _id: { $ne: postId }
   })
   .limit(limit)
     .then((posts) => {
-      const { postId } = req.params;
+      
       Post.findById(postId)
         .populate({
           path: "applications",

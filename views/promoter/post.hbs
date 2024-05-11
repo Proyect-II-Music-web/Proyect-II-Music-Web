@@ -6,9 +6,9 @@
                 <label for="title">Nombre del Evento:</label>
                 <input value="{{values.title}}" type="text" class="form-control {{#if errors.title}}is-invalid{{/if}}" id="title" name="title">
                 {{#if errors.title}}
-                <div class="invalid-feedback">
-                    {{errors.title}}
-                </div>
+                    <div class="invalid-feedback">
+                        {{errors.title}}
+                    </div>
                 {{/if}}
             </div>
 
@@ -16,9 +16,9 @@
                 <label for="description">Descripción:</label>
                 <textarea class="form-control {{#if errors.description}}is-invalid{{/if}}" id="description" name="description" rows="3">{{values.description}}</textarea>
                 {{#if errors.description}}
-                <div class="invalid-feedback">
-                    {{errors.description}}
-                </div>
+                    <div class="invalid-feedback">
+                        {{errors.description}}
+                    </div>
                 {{/if}}
             </div>
 
@@ -26,19 +26,19 @@
                 <label for="tags">Generos (separar por comas):</label>
                 <input value="{{values.tags}}" type="text" class="form-control {{#if errors.tags}}is-invalid{{/if}}" id="tags" name="tags">
                 {{#if errors.tags}}
-                <div class="invalid-feedback">
-                    {{errors.tags}}
-                </div>
+                    <div class="invalid-feedback">
+                        {{errors.tags}}
+                    </div>
                 {{/if}}
             </div>
 
             <div class="form-group mb-3">
                 <label for="date">Fecha:</label>
-                <input value="{{values.date}}" type="date" class="form-control {{#if errors.date}}is-invalid{{/if}}" id="date" name="date">
+                <input value="{{values.date}}" type="datetime-local" class="form-control {{#if errors.date}}is-invalid{{/if}}" id="date" name="date">
                 {{#if errors.date}}
-                <div class="invalid-feedback">
-                    {{errors.date}}
-                </div>
+                    <div class="invalid-feedback">
+                        {{errors.date}}
+                    </div>
                 {{/if}}
             </div>
 
@@ -46,9 +46,9 @@
                 <label for="place">Lugar:</label>
                 <input value="{{values.place}}" type="text" class="form-control {{#if errors.place}}is-invalid{{/if}}" id="place" name="place">
                 {{#if errors.place}}
-                <div class="invalid-feedback">
-                    {{errors.place}}
-                </div>
+                    <div class="invalid-feedback">
+                        {{errors.place}}
+                    </div>
                 {{/if}}
             </div>
 
@@ -56,12 +56,21 @@
                 <label for="maxForum">Máximo Foro:</label>
                 <input value="{{values.maxForum}}" type="number" class="form-control {{#if errors.maxForum}}is-invalid{{/if}}" id="maxForum" name="maxForum">
                 {{#if errors.maxForum}}
-                <div class="invalid-feedback">
-                    {{errors.maxForum}}
-                </div>
+                    <div class="invalid-feedback">
+                        {{errors.maxForum}}
+                    </div>
                 {{/if}}
             </div>
-
+            <div class="form-group mb-3">
+                <label for="price">Precio de la entrada</label>
+                <input value="{{values.price}}" type="number" class="form-control" id="price" name="price">
+               
+            </div>
+            <div class="mb-3">
+                <label for="avatar" class="form-label">Foto de tu Evento</label>
+                <input type="file" class="form-control" id="avatar" name="avatar" />
+            </div>
+            
 
             <button type="submit" class="btn btn-primary">Crear</button>
         </form>

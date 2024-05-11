@@ -39,3 +39,21 @@ hbs.registerHelper('ifMaxForumComplete', function(assistans, maxForum, options) 
   }
 });
 
+hbs.registerHelper('formatDate', function(date) {
+  // Lógica para formatear la fecha
+  return date.toLocaleDateString('es-ES', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit'
+  }).replace(/\//g, '-');
+});
+
+hbs.registerHelper('ifNoCurrentUser', function(currentUser, options) {
+  if (!currentUser) {
+    return options.fn(this);
+  } else {
+    return options.inverse(this);
+  }
+});

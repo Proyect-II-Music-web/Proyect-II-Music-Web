@@ -35,46 +35,47 @@ app.use(session.getCurrentUser);
 app.use(routes);
 
 app.listen(3000, () => {
-  
-  //   Post.find()
-  //   .then((posts) => {
-  //     User.find({role: "user"})
-  //       .then((users) => {
-  //        const appsPromises = users.map((user) => {
-  //           return Application.create({
-  //             user: user._id,
-  //             post: posts[4]._id
-  //           })
-  //       })
+  //Solcitudes
+      Post.find()
+      .then((posts) => {
+        User.find({role: "user"})
+          .then((users) => {
+           const appsPromises = users.map((user) => {
+              return Application.create({
+                user: user._id,
+                post: posts[2]._id
+              })
+          })
 
-  //        Promise.all(appsPromises)
-  //       .then((apps) => {
-  //         console.log(apps)
-  //       })
-  //   } )
-  //  })  
+           Promise.all(appsPromises)
+          .then((apps) => {
+            console.log(apps)
+          })
+      } )
+     }) 
+
   //ASISTENCIA
-  //  Post.findOne({
-  //   title:"Noche de Reggae"})
-  //  .then((post) => {
-  //    User.find()
-  //      .then((users) => {
-  //          const appsPromises = users.map((user) => {
-  //            return Post.updateOne(
-  //              {_id: post._id,
-  //               $expr: { $lt: [ { $size: "$assistans" }, "$maxForum" ] } },
-  //              { $addToSet: { assistans: user._id } }
-  //            )
-  //      })
+    //  Post.findOne({
+    //   title:"Concierto de Rock"})
+    //  .then((post) => {
+    //    User.find()
+    //      .then((users) => {
+    //          const appsPromises = users.map((user) => {
+    //            return Post.updateOne(
+    //              {_id: post._id,
+    //               $expr: { $lt: [ { $size: "$assistans" }, "$maxForum" ] } },
+    //              { $addToSet: { assistans: user._id } }
+    //            )
+    //      })
 
-  //          Promise.all(appsPromises)
-  //          .then((assists) => {
-  //            console.log(assists)
-  //          })
-  //          .catch((err) => console.log(err))
-  //      })
-  //      console.log('App running at port 3000')
-  //    })
+    //          Promise.all(appsPromises)
+    //          .then((assists) => {
+    //            console.log(assists)
+    //          })
+    //          .catch((err) => console.log(err))
+    //      })
+    //      console.log('App running at port 3000')
+    //    })
 
 
 

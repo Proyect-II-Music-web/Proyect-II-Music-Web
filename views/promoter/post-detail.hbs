@@ -1,17 +1,17 @@
 <div class="container mt-5 mb-5">
   <div class="row">
-    <div class="col-md-8 cd-lg-10 offset-md-2">
+    <div class="col-md-10  m-auto">
       <div class="card mb-4 p-3">
         <!-- Título del evento -->
         <h2 class="card-title text-center mb-4">{{post.title}}</h2>
   
         <div class="row">
           <!-- Columna para el avatar del evento -->
-          <div class="col-md-4">
+          <div class="col-sm-12 col-md-4">
             
               <img src="{{post.avatar}}" class="card-img mb-3" alt="Avatar del evento" style="width: 400px; height: 350px;">
             <p class="card-text">Tags: {{post.tags}}</p>
-              <p class="card-text">Fecha: {{post.date}}</p>
+              <p class="card-text">Fecha: {{formatDate post.date}}</p>
               <p class="card-text">Lugar: {{post.place}}</p>
               <p>Bandas:
                 {{#each post.bands as |band|}}
@@ -27,8 +27,12 @@
               
             {{#ifRoleIsPromoter currentUser}}
               <div class="mt-2 d-flex">
-                <a href="/promoter/{{post._id}}/edit-post" class="btn btn-primary">Editar
-                  Evento</a>
+                <form
+                  action="/promoter/{{post._id}}/edit-post"
+                  method="GET"
+                >
+                  <button type="submit" class="btn btn-primary">Editar Evento</button>
+                </form>
                 <form
                   action="/promoter/{{post._id}}/delete"
                   method="POST"
@@ -65,13 +69,13 @@
 
     {{#ifRoleIsPromoter currentUser}}
     {{#ifPostIsNotClosed post.isClosed}}
-      <div class="card">
+      <div class="card mb-3">
         <div class="card-body">
           <h3>Solicitudes</h3>
           {{#if post.applications}}
             <p>
               {{#each post.applications as |application|}}
-                <a href="/band/{{application.user._id}}/details">{{application.user.name}}</a> quiere participar en tu evento
+                <a href="/band/{{application.user.band._id}}">{{application.user.band.name}}</a> quiere participar en tu evento
                 <form action="/promoter/post/{{post._id}}/add-band/{{application.user.band._id}}/{{application._id}}" method="POST">
                   <button class="btn btn-success">Aceptar</button>
                 </form>
