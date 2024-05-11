@@ -6,11 +6,12 @@
     <div class="card-body">
       <div class="row">
         <div class="col-md-4">
-          <img
-            src="https://images.prismic.io/sofarlive/0f8981b7-3dda-4be6-81b1-c5ace4399add_Enter_Basic_Info.jpg?auto=compress,format&rect=69,0,661,533&w=556&h=448"
-            alt="Band Avatar"
-            class="band-avatar mb-3"
-          />
+            <div class="card-body">
+              <img src="{{band.avatar}}" class="card-img" alt="Avatar de la Banda" style="width: 400px; height: 350px;">
+            </div>
+          </div>
+
+          
           <p>
             <strong>Géneros musicales:</strong>
             {{#each band.tags}}
@@ -21,6 +22,24 @@
             <strong>Miembros:</strong><br />
             {{#each band.members}}
               <span class="member">{{this}}</span><br />
+            {{/each}}
+          </p>
+           <p>
+            <strong>Frase</strong>
+            {{#each band.cathFrase}}
+              <span class="tag">{{this}}</span>
+            {{/each}}
+          </p>
+          <p>
+            <strong>Descripción</strong>
+            {{#each band.description}}
+              <span class="tag">{{this}}</span>
+            {{/each}}
+          </p>
+          <p>
+            <strong>Video</strong>
+            {{#each band.linkVideo}}
+              <span class="tag">{{this}}</span>
             {{/each}}
           </p>
           <i class="fab fa-instagram"></i>

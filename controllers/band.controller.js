@@ -20,12 +20,11 @@ module.exports.doCreateBand = (req, res, next) =>  {
   .catch((err) => next(err))
 }
 module.exports.bandDetails = (req, res, next) => {
-  const {ownerId} = req.params;
-  Band.find({owner: ownerId})
+  const {bandId} = req.params;
+  Band.findById(bandId)
     //.populate({path: "posts", populate: {path:"post"}})
-    .then((bands) => {
-      console.log("bands",bands);
-      res.render("band/band-details", {bands})
+    .then((band) => {
+      res.render("band/band-details", {band})
     })
     .catch((err) => next(err))
 };

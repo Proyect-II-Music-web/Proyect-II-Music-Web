@@ -15,8 +15,25 @@
     <div class="text-center">
       <a href="/user/edit" class="btn btn-primary">Editar Perfil</a>
     </div>
+    {{else}}
+      <div class="text-center mb-4">
+      <img
+        src="{{currentUser.avatar}}"
+        class="rounded-circle border-0"
+        alt="Avatar"
+        style="width: 100px;"
+      />
+    </div>
+    <div class="text-center">
+      <p class="mb-2">{{currentUser.name}}</p>
+      <p class="mb-2">Email: {{currentUser.email}}</p>
+    </div>
+    <div class="text-center">
+      <a href="/user/edit" class="btn btn-primary">Editar Perfil</a>
+    </div>
   {{/ifRoleIsUser}}
 </div>
+{{#ifRoleIsUser currentUser}}
 {{#if band}}
   <div class="container mt-5 mb-4">
     <div class="card">
@@ -69,3 +86,4 @@
     <a class="nav-link" href="/band/create-band">Crea tu Banda</a>
   </p>
 {{/if}}
+{{/ifRoleIsUser}}
