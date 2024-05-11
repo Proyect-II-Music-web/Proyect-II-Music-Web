@@ -38,7 +38,4 @@ hbs.registerHelper('ifMaxForumComplete', function(assistans, maxForum, options) 
     return options.inverse(this);
   }
 });
-hbs.registerHelper('limit', function(arr, limit, options) {
-  if (!Array.isArray(arr)) { return []; }
-  return arr.slice(0, limit);
-});
+

@@ -1,22 +1,16 @@
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
   <div class="row">
-    <div class="col-md-8 offset-md-2">
-      <div class="card mb-3">
+    <div class="col-md-8 cd-lg-10 offset-md-2">
+      <div class="card mb-4 p-3">
         <!-- Título del evento -->
-        <h2 class="card-title text-center">{{#if post.isClosed}}Evento para público{{else}}{{post.title}}{{/if}}</h2>
-        <h2>{{post.title}}</h2>
+        <h2 class="card-title text-center mb-4">{{post.title}}</h2>
+  
         <div class="row">
           <!-- Columna para el avatar del evento -->
           <div class="col-md-4">
-            <div class="card-body">
-              <img src="{{post.avatar}}" class="card-img" alt="Avatar del evento" style="width: 400px; height: 350px;">
-            </div>
-          </div>
-          <!-- Columna para los datos del evento -->
-          <div class="col-md-6 ms-auto">
-            <div class="card-body event-details-container">
-              <p class="card-text">{{post.description}}</p>
-              <p class="card-text">Tags: {{post.tags}}</p>
+            
+              <img src="{{post.avatar}}" class="card-img mb-3" alt="Avatar del evento" style="width: 400px; height: 350px;">
+            <p class="card-text">Tags: {{post.tags}}</p>
               <p class="card-text">Fecha: {{post.date}}</p>
               <p class="card-text">Lugar: {{post.place}}</p>
               <p>Bandas:
@@ -25,6 +19,12 @@
                 {{#unless @last}}, {{/unless}}
                 {{/each}}
               </p>
+          </div>
+          <!-- Columna para los datos del evento -->
+          <div class="col-md-6 ms-auto">
+            <div class="card-body event-details-container">
+              <p class="card-text">{{post.description}}</p>
+              
             {{#ifRoleIsPromoter currentUser}}
               <div class="mt-2 d-flex">
                 <a href="/promoter/{{post._id}}/edit-post" class="btn btn-primary">Editar
@@ -62,9 +62,7 @@
 </div>
 
 
-<h2> Proximos Eventos</h2>
 
-    
     {{#ifRoleIsPromoter currentUser}}
     {{#ifPostIsNotClosed post.isClosed}}
       <div class="card">
@@ -90,8 +88,9 @@
       {{/ifPostIsNotClosed}}
     {{/ifRoleIsPromoter}}
     
-    
-    <div class="row">
+  
+    <div class="row mb-5">
+      <h2 class="mb-3"> También te pueden interesar</h2>
   {{#each posts as |post|}}
       <div class="col-md-4">
 
@@ -108,5 +107,4 @@
       </div>
   {{/each}}
     </div>
-  </div>
-</div>
+

@@ -51,7 +51,7 @@ body {
     right: 200px;
 }
 
-/*CLASES CAPIADAS*/
+/*CLASES COPIADAS*/
 .card .card-header.card-header-image .colored-shadow {
     -webkit-transform: scale(.94);
     transform: scale(.94);
@@ -204,12 +204,44 @@ body {
     color: #000;
     text-decoration: none
 }
-.img-raised {
-    box-shadow: 0 5px 15px -8px rgba(0,0,0,.24),0 8px 10px -5px rgba(0,0,0,.2)
-}
 .card .card-header.card-header-image img {
     width: 100%;
     border-radius: 6px;
     pointer-events: none;
+    box-shadow: 0 5px 15px -8px rgba(0,0,0,.24),0 8px 10px -5px rgba(0,0,0,.2)
+}
+.card-img-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1.25rem
+}
+
+.card-img {
+    width: 100%;
+    border-radius: calc(.25rem - 1px)
+}
+
+.card-img-top {
+    width: 100%;
+    border-top-left-radius: calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px)
+}
+
+.card-img-bottom {
+    width: 100%;
+    border-bottom-right-radius: calc(.25rem - 1px);
+    border-bottom-left-radius: calc(.25rem - 1px)
+}
+img {
+    height: 400px;
+    width: auto;
+    vertical-align: middle;
+    border-style: none
+}
+
+.img-raised {
     box-shadow: 0 5px 15px -8px rgba(0,0,0,.24),0 8px 10px -5px rgba(0,0,0,.2)
 }
