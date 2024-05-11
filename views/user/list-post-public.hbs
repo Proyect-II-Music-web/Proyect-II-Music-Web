@@ -1,22 +1,19 @@
-
 {{#each genres as |genre|}} 
-
-  <a href="/user/list-post/public?genres={{genre}}">{{genre}}</a>
-
+  <div class="btn-group mb-3" role="group">
+    <form action="/user/list-post/public" method="GET">
+      <input type="hidden" name="genres" value="{{genre}}">
+      <button type="submit" class="btn btn-primary">{{genre}}</button>
+    </form>
+  </div>
 {{/each}}
 
 {{#each posts as |post|}}
-  <div class="card">
+  <div class="card mb-3">
     <div class="card-body">
       <h5 class="card-title">{{post.title}}</h5>
-
       <p class="card-text">Fecha: {{post.date}}</p>
       <p class="card-text">Lugar: {{post.place}}</p>
-      <a
-        href="/promoter/post/{{post._id}}"
-        class="btn"
-        style="background-color: #26c9cc;"
-      >Ver más</a>
+      <a href="/promoter/post/{{post._id}}" class="btn" style="background-color: #26c9cc;">Ver más</a>
     </div>
   </div>
 {{/each}}

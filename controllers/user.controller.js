@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const User = require("../models/User.model");
 const Band = require("../models/Band.model");
 const Post = require("../models/Post.model");
-const genresArr = require('../constants/genres');
+const genresArr = require("../constants/genres");
 
 module.exports.userRegister = (req, res, next) => {
   res.render("user/register");
@@ -64,12 +64,12 @@ module.exports.doUserLogin = (req, res, next) => {
 };
 
 module.exports.userProfile = (req, res, next) => {
-  Band.findOne({owner: req.currentUser._id})
+  Band.findOne({ owner: req.currentUser._id })
     .then((band) => {
       console.log(req.currentUser);
       res.render("user/profile", { band });
     })
-    .catch((err) => next(err))
+    .catch((err) => next(err));
 };
 module.exports.doAssist = (req, res, next) => {
   const { postId } = req.params;
@@ -79,26 +79,26 @@ module.exports.doAssist = (req, res, next) => {
     {
       _id: postId,
       //maxForum: { $gt: { $size: "$assistans" } },
-      $expr: { $lt: [ { $size: "$assistans" }, "$maxForum" ] }
+      $expr: { $lt: [{ $size: "$assistans" }, "$maxForum"] },
     },
     { $addToSet: { assistans: req.currentUser._id } }
   )
     .then((post) => {
-      console.log(post)
+      console.log(post);
       res.redirect(`/promoter/post/${postId}`);
     })
     .catch((err) => next(err));
 };
 
 module.exports.getPostForPublic = (req, res, next) => {
-  const { genres,  } = req.query;
-  const query = {isClosed: true}
+  const { genres } = req.query;
+  const query = { isClosed: true };
   if (genres) {
-    query.tags = genres
+    query.tags = genres;
   }
   Post.find(query)
     .then((posts) => {
-      res.render("user/list-post-public", {posts, genres: genresArr})
+      res.render("user/list-post-public", { posts, genres: genresArr });
     })
     .catch((err) => next(err));
 };
@@ -108,13 +108,13 @@ module.exports.editUserProfile = (req, res, next) => {
 
 module.exports.updateUserProfile = (req, res, next) => {
   if (req.file) {
-    req.body.avatar = req.file.path
+    req.body.avatar = req.file.path;
   }
   User.findByIdAndUpdate(req.currentUser._id, req.body, { new: true })
-  .then(() => {
-    res.redirect("/user/profile")
-  })
-  .catch((err) => next(err))
+    .then(() => {
+      res.redirect("/user/profile");
+    })
+    .catch((err) => next(err));
   res.render("user/edit");
 };
 
