@@ -1,39 +1,49 @@
-<div class="container">
-  <div class="backgound-header mb-5">
-    <h1>LOS MEJORES CONCIERTOS DE MADRID</h1>
+<div class="container mb-5">
+  <div class="container">
+    <div class="backgound-header mb-5">
+      <h1>LOS MEJORES CONCIERTOS DE MADRID</h1>
+    </div>
   </div>
-</div>
 
-<div class="row">
+  <div class="row mb-3">
 
-  {{#each posts as |post|}}
-    <div class="col-md-4">
-      <div class="card card-plain card-blog">
-        <div class="card-header card-header-image">
-          <a href="#pablo">
-            <img class="img img-raised" src="{{post.avatar}}" />
-          </a>
-          <div
-            class="colored-shadow"
-            style="background-image: url(&quot;./assets/img/examples/blog7.jpg&quot;); opacity: 1;"
-          ></div>
-        </div>
-        <div class="card-body">
-          <h6 class="card-category text-danger">
-            <i class="material-icons">Empresa patrocinadora</i>
-            Enterprise
-          </h6>
-          <h4 class="card-title">
-            <a href="#pablo">{{post.title}}</a>
-          </h4>
-          <p class="card-description">
-            {{post.description}}
-            <br />
-            <a href="/promoter/post/{{post._id}}"> Read More </a>
-          </p>
+    {{#each posts as |post|}}
+      <div class="col-md-4">
+        <div class="card card-plain card-blog">
+          <div class="card-header card-header-image">
+            <a href="#">
+              <img class="img img-raised" src="{{post.avatar}}" />
+            </a>
+            <div
+              class="colored-shadow"
+              style="background-image: url(&quot;./assets/img/examples/blog7.jpg&quot;); opacity: 1;"
+            ></div>
+          </div>
+          <div class="card-body">
+            <h6 class="card-category text-danger">
+              <i class="material-icons">Empresa patrocinadora</i>
+              Enterprise
+            </h6>
+            <h4 class="card-title">
+              <a href="#pablo">{{post.title}}</a>
+            </h4>
+            <p class="card-description text-truncate">
+              {{post.description}}
+              <br />
+              <a href="/promoter/post/{{post._id}}"> Ver más detalles </a>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  {{/each}}
+    {{/each}}
 
+  </div>
+
+  <div id="more">
+    {{#if nextPage}}
+      <form action="/#more" method="get">
+        <button class="btn btn-primary" name="page" value="{{nextPage}}">Ver más conciertos</button>
+      </form>
+    {{/if}}
+  </div>
 </div>
