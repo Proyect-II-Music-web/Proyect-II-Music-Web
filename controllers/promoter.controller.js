@@ -40,6 +40,12 @@ module.exports.getPosts = (req, res, next) => {
     .catch((err) => next(err));
 };
 module.exports.postDetail = (req, res, next) => {
+  //limitar la busqueda a 3  post
+  const {page = 0} = req.query
+
+  const ITEMS_PER_PAGE = 3
+
+  const limit = page ? page * ITEMS_PER_PAGE + ITEMS_PER_PAGE : ITEMS_PER_PAGE
   // Obtener la fecha actual y la fecha un mes después
   const currentDate = new Date();
   const oneMonthLater = new Date(currentDate);
@@ -52,6 +58,7 @@ module.exports.postDetail = (req, res, next) => {
       $lte: oneMonthLater,
     },
   })
+  .limit(limit)
     .then((posts) => {
       const { postId } = req.params;
       Post.findById(postId)
